@@ -226,7 +226,12 @@ document.addEventListener("DOMContentLoaded", function () {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-
+        indexAxis: "y",
+        elements: {
+          bar: {
+            borderRadius: 5,
+          },
+        },
         // ========================
         // CLICK VÀO CỘT BIỂU ĐỒ
         // ========================
@@ -426,7 +431,12 @@ document.addEventListener("DOMContentLoaded", function () {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-
+        indexAxis: "y",
+        elements: {
+          bar: {
+            borderRadius: 5,
+          },
+        },
         // ========================
         // CLICK VÀO CỘT BIỂU ĐỒ
         // ========================
@@ -639,7 +649,12 @@ document.addEventListener("DOMContentLoaded", function () {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-
+        indexAxis: "y",
+        elements: {
+          bar: {
+            borderRadius: 5,
+          },
+        },
         // ========================
         // CLICK VÀO CỘT BIỂU ĐỒ
         // ========================
@@ -845,7 +860,12 @@ document.addEventListener("DOMContentLoaded", function () {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-
+        indexAxis: "y",
+        elements: {
+          bar: {
+            borderRadius: 5,
+          },
+        },
         // ========================
         // CLICK VÀO CỘT BIỂU ĐỒ
         // ========================
@@ -1049,7 +1069,12 @@ document.addEventListener("DOMContentLoaded", function () {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-
+        indexAxis: "y",
+        elements: {
+          bar: {
+            borderRadius: 5,
+          },
+        },
         // ========================
         // CLICK VÀO CỘT BIỂU ĐỒ
         // ========================
@@ -1254,7 +1279,12 @@ document.addEventListener("DOMContentLoaded", function () {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-
+        indexAxis: "y",
+        elements: {
+          bar: {
+            borderRadius: 5,
+          },
+        },
         // ========================
         // CLICK VÀO CỘT BIỂU ĐỒ
         // ========================
@@ -2672,14 +2702,14 @@ const switchTab = (tabId) => {
   if (dropdown) dropdown.style.display = "none";
 
   // SỬA: Logic tự động mở/đóng dropdown
-  const dashboardHeader = document.getElementById("dashboardHeader");
-  const dashboardLinks = document.getElementById("dashboardLinksContainer");
+  // const dashboardHeader = document.getElementById("dashboardHeader");
+  // const dashboardLinks = document.getElementById("dashboardLinksContainer");
 
   // SỬA: Bỏ logic tự động đóng
-  if (tabId.startsWith("dashboard-")) {
-    dashboardHeader.classList.add("active");
-    dashboardLinks.classList.add("active-section");
-  }
+  // if (tabId.startsWith("dashboard-")) {
+  //   dashboardHeader.classList.add("active");
+  //   dashboardLinks.classList.add("active-section");
+  // }
 };
 
 // Hàm xử lý việc chuyển đổi trạng thái menu sidebar (Click)
@@ -3945,7 +3975,7 @@ function initializeCharts() {
 }
 
 // Setup function to be called when the tab is switched to
-window.setupOilSpillMonitor = (function () {
+window.setupOilSpillMonitor = function () {
   if (!document.getElementById("oil-spill-monitor")) return;
 
   // Add event listeners (Đảm bảo chỉ thêm 1 lần)
@@ -3981,61 +4011,61 @@ window.setupOilSpillMonitor = (function () {
   const startDate = document.getElementById("startDate");
   if (endDate) endDate.valueAsDate = today;
   if (startDate) startDate.valueAsDate = lastWeek;
-})(
-  // Tự động setup khi trang load nếu không có cơ chế chuyển tab
-  // setupOilSpillMonitor();
+};
+// Tự động setup khi trang load nếu không có cơ chế chuyển tab
+// setupOilSpillMonitor();
 
-  // Oil Spill Monitor JS
-  function () {
-    // Sample data for table
-    const sampleData = [
-      {
-        id: "SK001",
-        plate: "59A-12345",
-        camera: "CAM-A01",
-        aibox: "AIBOX-01",
-        branch: "HCM",
-        time: "19/11/2025 14:23",
-        severity: "serious",
-        severityText: "Nghiêm trọng",
-        amount: "2.5L",
-        status: "pending",
-        statusText: "Chưa xử lý",
-      },
-      {
-        id: "SK002",
-        plate: "30G-67890",
-        camera: "CAM-B02",
-        aibox: "AIBOX-02",
-        branch: "Hà Nội",
-        time: "19/11/2025 13:45",
-        severity: "moderate",
-        severityText: "Trung bình",
-        amount: "1.2L",
-        status: "resolved",
-        statusText: "Đã xử lý",
-      },
-      {
-        id: "SK003",
-        plate: "51F-11111",
-        camera: "CAM-C03",
-        aibox: "AIBOX-03",
-        branch: "Đà Nẵng",
-        time: "19/11/2025 12:30",
-        severity: "light",
-        severityText: "Nhẹ",
-        amount: "0.5L",
-        status: "resolved",
-        statusText: "Đã xử lý",
-      },
-    ];
+// Oil Spill Monitor JS
+const initChartshandler = function () {
+  // Sample data for table
+  const sampleData = [
+    {
+      id: "SK001",
+      plate: "59A-12345",
+      camera: "CAM-A01",
+      aibox: "AIBOX-01",
+      branch: "HCM",
+      time: "19/11/2025 14:23",
+      severity: "serious",
+      severityText: "Nghiêm trọng",
+      amount: "2.5L",
+      status: "pending",
+      statusText: "Chưa xử lý",
+    },
+    {
+      id: "SK002",
+      plate: "30G-67890",
+      camera: "CAM-B02",
+      aibox: "AIBOX-02",
+      branch: "Hà Nội",
+      time: "19/11/2025 13:45",
+      severity: "moderate",
+      severityText: "Trung bình",
+      amount: "1.2L",
+      status: "resolved",
+      statusText: "Đã xử lý",
+    },
+    {
+      id: "SK003",
+      plate: "51F-11111",
+      camera: "CAM-C03",
+      aibox: "AIBOX-03",
+      branch: "Đà Nẵng",
+      time: "19/11/2025 12:30",
+      severity: "light",
+      severityText: "Nhẹ",
+      amount: "0.5L",
+      status: "resolved",
+      statusText: "Đã xử lý",
+    },
+  ];
 
-    // Render table
-    function renderTable(data) {
-      const tbody = document.getElementById("tableBody");
-      tbody.innerHTML = data
-        .map(
-          (item) => `
+  // Render table
+  function renderTable(data) {
+    const tbody = document.getElementById("tableBody");
+    tbody.innerHTML = data
+      .map(
+        (item) => `
             <tr>
                 <td>${item.id}</td>
                 <td>${item.plate}</td>
@@ -4044,12 +4074,12 @@ window.setupOilSpillMonitor = (function () {
                 <td>${item.branch}</td>
                 <td>${item.time}</td>
                 <td><span class="badge badge-${item.severity}">${
-            item.severityText
-          }</span></td>
+          item.severityText
+        }</span></td>
                 <td>${item.amount}</td>
                 <td><span class="badge badge-${item.status}">${
-            item.statusText
-          }</span></td>
+          item.statusText
+        }</span></td>
                 <td>
                     <button class="btn btn-view" onclick="viewDetail('${
                       item.id
@@ -4062,93 +4092,93 @@ window.setupOilSpillMonitor = (function () {
                 </td>
             </tr>
         `
-        )
-        .join("");
-    }
+      )
+      .join("");
+  }
 
-    // Initialize charts
-    function initCharts() {
-      // Donut Chart
-      const donutCtx = document.getElementById("donutChart").getContext("2d");
-      new Chart(donutCtx, {
-        type: "doughnut",
-        data: {
-          labels: ["Nhẹ", "Trung bình", "Nghiêm trọng", "Rất nghiêm trọng"],
-          datasets: [
-            {
-              data: [15, 25, 35, 25],
-              backgroundColor: ["#3b82f6", "#fbbf24", "#f97316", "#ef4444"],
-              borderWidth: 0,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: "bottom",
-              labels: { padding: 15, font: { size: 12 } },
-            },
+  // Initialize charts
+  function initCharts() {
+    // Donut Chart
+    const donutCtx = document.getElementById("donutChart").getContext("2d");
+    new Chart(donutCtx, {
+      type: "doughnut",
+      data: {
+        labels: ["Nhẹ", "Trung bình", "Nghiêm trọng", "Rất nghiêm trọng"],
+        datasets: [
+          {
+            data: [15, 25, 35, 25],
+            backgroundColor: ["#3b82f6", "#fbbf24", "#f97316", "#ef4444"],
+            borderWidth: 0,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: "bottom",
+            labels: { padding: 15, font: { size: 12 } },
           },
         },
-      });
+      },
+    });
 
-      // Line Chart
-      const lineCtx = document.getElementById("lineChart").getContext("2d");
-      new Chart(lineCtx, {
-        type: "line",
-        data: {
-          labels: ["00:00", "04:00", "08:00", "12:00", "16:00", "20:00"],
-          datasets: [
-            {
-              label: "Số vụ tràn",
-              data: [2, 3, 5, 4, 6, 3],
-              borderColor: "#10b981",
-              backgroundColor: "rgba(16, 185, 129, 0.1)",
-              tension: 0.4,
-              fill: true,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
-          scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } },
-        },
-      });
-    }
-
-    // Search functionality
-    document
-      .getElementById("tableSearch")
-      .addEventListener("input", function (e) {
-        const searchTerm = e.target.value.toLowerCase();
-        const filteredData = sampleData.filter((item) =>
-          Object.values(item).some((val) =>
-            String(val).toLowerCase().includes(searchTerm)
-          )
-        );
-        renderTable(filteredData);
-      });
-
-    // Global functions
-    window.viewDetail = function (id) {
-      alert(`Xem chi tiết sự kiện: ${id}`);
-    };
-
-    window.handleAction = function (id) {
-      if (confirm(`Xác nhận xử lý sự kiện ${id}?`)) {
-        alert('Đã chuyển trạng thái sang "Đang xử lý"');
-      }
-    };
-
-    // Initialize
-    renderTable(sampleData);
-    initCharts();
+    // Line Chart
+    const lineCtx = document.getElementById("lineChart").getContext("2d");
+    new Chart(lineCtx, {
+      type: "line",
+      data: {
+        labels: ["00:00", "04:00", "08:00", "12:00", "16:00", "20:00"],
+        datasets: [
+          {
+            label: "Số vụ tràn",
+            data: [2, 3, 5, 4, 6, 3],
+            borderColor: "#10b981",
+            backgroundColor: "rgba(16, 185, 129, 0.1)",
+            tension: 0.4,
+            fill: true,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } },
+      },
+    });
   }
-)();
+
+  // Search functionality
+  document
+    .getElementById("tableSearch")
+    .addEventListener("input", function (e) {
+      const searchTerm = e.target.value.toLowerCase();
+      const filteredData = sampleData.filter((item) =>
+        Object.values(item).some((val) =>
+          String(val).toLowerCase().includes(searchTerm)
+        )
+      );
+      renderTable(filteredData);
+    });
+
+  // Global functions
+  window.viewDetail = function (id) {
+    alert(`Xem chi tiết sự kiện: ${id}`);
+  };
+
+  window.handleAction = function (id) {
+    if (confirm(`Xác nhận xử lý sự kiện ${id}?`)) {
+      alert('Đã chuyển trạng thái sang "Đang xử lý"');
+    }
+  };
+
+  // Initialize
+  renderTable(sampleData);
+  initCharts();
+};
+initChartshandler();
 
 function showDataWindow() {
   document.getElementById("dataWindow").style.display = "block";
