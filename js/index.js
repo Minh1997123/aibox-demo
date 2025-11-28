@@ -2217,7 +2217,6 @@ const initDashboardOperation = () => {
   renderUptimeAlertTable();
   // SỬA: Render bảng sự kiện
   renderEventFeedTable();
-
   // SỬA: Gọi hàm vẽ biểu đồ cho "Hiệu suất mô hình AI"
   initReportAIModelCharts();
 };

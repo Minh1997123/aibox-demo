@@ -45,7 +45,7 @@
             <a href="#" class="nav-item" data-tab="event-charts-viewoto">Biển số xe</a>
         </div> -->
         <a href="#" class="nav-item" data-tab="dashboard-operation"><span class="icon icon-building"></span>Tổng quan</a>
-        <a href="#" class="nav-item" data-tab="dashboard-SysAdmin"><span class="icon icon-building"></span>Quản trị hệ thống</a>
+        <a href="#" class="nav-item" data-tab="dashboard-SysAdmin" id="SysAdmin"><span class="icon icon-building"></span>Quản trị hệ thống</a>
         <a href="#" class="nav-item" data-tab="report-branch"><span class="icon icon-building"></span>Thống kê chi nhánh</a>
         <a href="#" class="nav-item" data-tab="notifications"><span class="icon icon-bell"></span>Thông báo</a>
         <a href="#" class="nav-item" data-tab="report-security"><span class="icon icon-shield"></span> Hàng rào ảo</a>
@@ -145,6 +145,69 @@
 <div class="toast-container" id="toastContainer"></div>
         
         <div class="content-body">
+            <div id="dashboard-SysAdmin" class="tab-content">
+                <div id="report-ai-model-content" style="margin-top: 25px;">         
+                    <div class="card">
+                        <h3 class="header">Thống kê hiệu suất</h3>
+                        <table>
+                            <thead>
+                                <tr><th>Mã mô hình</th><th>Loại</th><th>Số sự kiện (24h)</th><th>Sự kiện vi phạm</th><th>Thời gian xử lý trung bình (ms)</th><th>CPU TB</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>LPR_v3.1</td><td>Nhận dạng biển số</td><td>1520</td><td>5</td><td>85ms</td><td>15%</td></tr>
+                                <tr><td>PPE_v1.5</td><td>Phát hiện PPE</td><td>350</td><td>12</td><td>110ms</td><td>25%</td></tr>
+                                <tr><td>Intrusion_v2.0</td><td>Phát hiện xâm nhập</td><td>45</td><td>1</td><td>95ms</td><td>20%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <h3 class="header">Hạ tầng và tài nguyên (CPU/RAM/Storage)</h3>
+                                <table id="resourceTable">
+                                    <thead>
+                                        <tr>
+                                            <th>AIBox ID</th>
+                                            <th>CPU Usage</th>
+                                            <th>RAM Usage</th>
+                                            <th>Storage Usage</th>
+                                            <th>T.độ Truyền/Nhận</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row card-group-height-1">
+                        <div class="col-6">
+                            <div class="card card-full-height">
+                                <h3 class="header">Độ chính xác</h3>
+                                <div style="position: relative; height: 180px;">
+                                    <canvas id="aiModelAccuracyChart1"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card card-full-height">
+                                <h3 class="header">Tốc độ xử lý trung bình (ms)</h3>
+                                <div style="position: relative; height: 180px;">
+                                    <canvas id="aiModelSpeedChart1"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="col-4">
+                        <div class="card">
+                            <h3 class="header">Tỷ lệ hệ thống (Không hoạt động & cảnh báo)</h3>
+                            <div style="position: relative; height: 180px;">
+                                <canvas id="systemStatusPieChart"></canvas> 
+                            </div>
+                        </div>
+                    </div>  
+            </div>
             <div id="dashboard-operation" class="tab-content active">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <h1 class="header">Tổng quan</h1>
@@ -204,23 +267,15 @@
                 </div> -->
             <div id="unreadCount">
                <div class="row card-group-height-1">
-                    <div class="col-4">
+                    <div class="col-6">
                         <div class="card">
                             <h3 class="header">So sánh sự kiện (Theo chi nhánh)</h3>
                             <div style="position: relative; height: 180px;">
                                 <canvas id="branchEventStackedChart"></canvas> 
                             </div>
                         </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <h3 class="header">Tỷ lệ hệ thống (Không hoạt động & cảnh báo)</h3>
-                            <div style="position: relative; height: 180px;">
-                                <canvas id="systemStatusPieChart"></canvas> 
-                            </div>
-                        </div>
-                    </div>  
-                    <div class="col-4">
+                    </div> 
+                    <div class="col-6">
                         <div class="card">
                             <h3 class="header">Trạng thái (hôm nay)</h3>
                             <div style="position: relative; height: 180px; justify-content: center; flex-direction:column;" class="chart-container-flex " >
@@ -659,7 +714,7 @@
                     </div>
                     <!-- ket thuc -->
                 </div>
-                <div class="row card-group-height-1">
+                <!-- <div class="row card-group-height-1">
                         <div class="col-6">
                             <div class="card card-full-height">
                                 <h3 class="header">Độ chính xác</h3>
@@ -676,395 +731,15 @@
                                 </div>
                             </div>
                         </div>
-                </div>
-               
- 
-              
-
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <h3 class="header" style="border: none; margin: 0;">Sự kiện vận hành</h3>
-                                <span style="font-size: 0.85em; color: #888;" id="lastUpdatedTime">Cập nhật lần cuối: ...</span>
-                            </div>
-                            
-                            <div class="filter-group">
-                                <label>Lọc nhanh:</label>
-                                <select id="eventFilterType">
-                                    <option value="type">Theo loại sự kiện</option>
-                                    <option value="severity">Theo mức độ</option>
-                                    <option value="model">Theo mô hình AI</option>
-                                </select>
-                                <select id="eventFilterValue">
-                                    <option value="all">Tất cả</option>
-                                    <option value="va_cham">Va chạm xe</option>
-                                    <option value="ppe">Vi phạm PPE</option>
-                                </select>
-                                <input type="text" placeholder="Tìm kiếm..." class="search-box" style="padding: 8px;" id="eventSearchBox" onkeyup="filterEventTable()">
-                            </div>
-                            
-                            <div class="event-feed" style="max-height: 250px;">
-                                <table id="eventFeedTable">
-                                    <thead>
-                                        <tr>
-                                            <th>Mã sự kiện</th>
-                                            <th>Loại sự kiện</th>
-                                            <th>Chi nhánh</th>
-                                            <th>Camera</th>
-                                            <th>Trạng thái</th>
-                                            <th>Hành động</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="eventFeedTableBody">
-                                        </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <h3 class="header">Hạ tầng và tài nguyên (CPU/RAM/Storage)</h3>
-                            <table id="resourceTable">
-                                <thead>
-                                    <tr>
-                                        <th>AIBox ID</th>
-                                        <th>CPU Usage</th>
-                                        <th>RAM Usage</th>
-                                        <th>Storage Usage</th>
-                                        <th>T.độ Truyền/Nhận</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <h3 class="header">Thời gian hoạt động và cảnh báo camera</h3>
-                            <div class="event-feed" style="max-height: 300px;">
-                                <table id="uptimeAlertTable">
-                                    <thead>
-                                        <tr>
-                                            <th>AIBox</th>
-                                            <th>Camera</th>
-                                            <th>Chi nhánh</th>
-                                            <th>Hoạt động (24 giờ)</th>
-                                            <th>Mất kết nối (24 giờ)</th>
-                                            <th>Thời gian mất kết nối</th>
-                                            <th>Sao lưu (Cloud)</th>
-                                            <th>Dung lượng (Còn lại)</th>
-                                            <th>Trạng thái</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="uptimeAlertTableBody">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div id="report-ai-model-content" style="margin-top: 25px;">
-                    <!-- <h2 class="header">Báo cáo hiệu suất mô hình vận hành</h2>
-                    <p>Theo dõi độ chính xác và tốc độ xử lý của các mô hình vận hành.</p>
-                    <div class="row card" style="align-items: center; padding: 15px;">
-                        <label>Lọc theo loại mô hình:</label>
-                        <select>
-                            <option>Tất cả</option>
-                            <option>Nhận dạng Biển số</option>
-                            <option>Phát hiện PPE</option>
-                            <option>Phát hiện Xâm nhập</option>
-                        </select>
-                    </div> -->
-
-                 
-
-                    <div class="card">
-                        <h3 class="header">Thống kê hiệu suất</h3>
-                        <table>
-                            <thead>
-                                <tr><th>Mã mô hình</th><th>Loại</th><th>Số sự kiện (24h)</th><th>Sự kiện vi phạm</th><th>Thời gian xử lý trung bình (ms)</th><th>CPU TB</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>LPR_v3.1</td><td>Nhận dạng biển số</td><td>1520</td><td>5</td><td>85ms</td><td>15%</td></tr>
-                                <tr><td>PPE_v1.5</td><td>Phát hiện PPE</td><td>350</td><td>12</td><td>110ms</td><td>25%</td></tr>
-                                <tr><td>Intrusion_v2.0</td><td>Phát hiện xâm nhập</td><td>45</td><td>1</td><td>95ms</td><td>20%</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                </div> -->
                 <div id="dashboard-admin">
-               
                 <div class="chart-tabs">
                     <div class="tab-content active" id="event-charts-overview">
-
-                        <!-- BIỂU ĐỒ -->
-                        <!-- <div class="card">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <h3 class="header">Biểu đồ sự kiện an toàn lao động</h3>
-
-                                <select id="eventOverviewSelect" style="padding: 5px;">
-                                    <option value="day">Theo ngày (7 ngày)</option>
-                                    <option value="week">Theo tuần (4 tuần)</option>
-                                    <option value="month" selected>Theo tháng (12 tháng)</option>
-                                </select>
-                            </div>
-
-                            <div class="chart-wrapper">
-                                <canvas id="eventOverviewChart"></canvas>
-                            </div>
-                        </div> -->
-
-
-                        <!-- BẢNG CHI TIẾT -->
-                        <!-- <div class="card" style="margin-top: 20px;">
-                            <h3 class="header">Chi tiết lỗi vi phạm an toàn lao động</h3>
-
-                            <table class="table" style="width: 100%; border-collapse: collapse;">
-                                <thead>
-                                    <tr>
-                                        <th>Mã vi phạm</th>
-                                        <th>Loại vi phạm</th>
-                                        <th>AIBox</th>
-                                        <th>Camera</th>
-                                        <th>Thời gian</th>
-                                        <th>Khu vực</th>
-                                        <th>Chi nhánh</th>
-                                        <th>ID Nhân viên</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <tbody id="detailTableBody"></tbody>
-                                </tbody>
-                            </table>
-                        </div> -->
-
-         </div>
-                    <!-- HÀng rào ảo CHART TAB -->
-<div class="tab-content" id="event-charts-type">
-    <!-- BẢNG CHI TIẾT -->
-    <!-- <div class="card" style="margin-top: 20px;">
-        <h3 class="header">Chi tiết vi phạm hàng rào ảo</h3>
-
-        <table class="table" style="width: 100%; border-collapse: collapse;">
-            <thead>
-                <tr>
-                    <th>Mã sự kiện</th>
-                    <th>Loại sự kiện</th>
-                    <th>AIBox</th>
-                    <th>Camera</th>
-                    <th>Thời gian</th>
-                    <th>Khu vực</th>
-                    <th>Chi nhánh</th>
-                    <th>Mức độ</th>
-                </tr>
-            </thead>
-
-            <tbody id="virtualFenceDetailTableBody">
-            </tbody>
-        </table>
-    </div> -->
-
-</div>
-
-<!-- BÁAO CHÁY CHART TAB -->
-<div class="tab-content" id="event-charts-detail">
-
-    <!-- BIỂU ĐỒ -->
-    <!-- <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h3 class="header">Biểu đồ sự kiện báo cháy</h3>
-
-            <select id="fireAlertSelect" style="padding: 5px;">
-                <option value="day">Theo ngày (7 ngày)</option>
-                <option value="week">Theo tuần (4 tuần)</option>
-                <option value="month" selected>Theo tháng (12 tháng)</option>
-            </select>
-        </div>
-
-        <div class="chart-wrapper">
-            <canvas id="fireAlertChart"></canvas>
-        </div>
-    </div> -->
-
-    <!-- BẢNG CHI TIẾT -->
-    <!-- <div class="card" style="margin-top: 20px;">
-        <h3 class="header">Chi tiết các cảnh báo báo cháy</h3>
-
-        <table class="table" style="width: 100%; border-collapse: collapse;">
-            <thead>
-                <tr>
-                    <th>Mã sự kiện</th>
-                    <th>Camera</th>
-                    <th>AIBox</th>
-                    <th>Chi nhánh</th>
-                    <th>Khu vực</th>
-                    <th>Mức độ nghiêm trọng</th>
-                    <th>Thời gian</th>
-                </tr>
-            </thead>
-
-            <tbody id="fireAlertDetailTableBody">
-            </tbody>
-        </table>
-    </div> -->
-
-</div>
-
-<!-- TRÀN DẦU KHO CHART TAB -->
-<div class="tab-content" id="event-charts-view">
-
-    <!-- BIỂU ĐỒ -->
-    <!-- <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h3 class="header">Biểu đồ sự kiện tràn dầu kho</h3>
-
-            <select id="warehouseOilSpillSelect" style="padding: 5px;">
-                <option value="day">Theo ngày (7 ngày)</option>
-                <option value="week">Theo tuần (4 tuần)</option>
-                <option value="month" selected>Theo tháng (12 tháng)</option>
-            </select>
-        </div>
-
-        <div class="chart-wrapper">
-            <canvas id="warehouseOilSpillChart"></canvas>
-        </div>
-    </div> -->
-
-    <!-- BẢNG CHI TIẾT -->
-    <!-- <div class="card" style="margin-top: 20px;">
-        <h3 class="header">Chi tiết sự kiện tràn dầu kho</h3>
-
-        <table class="table" style="width: 100%; border-collapse: collapse;">
-            <thead>
-                <tr>
-                    <th>Mã sự kiện</th>
-                    <th>Loại sự kiện</th>
-                    <th>AIBox</th>
-                    <th>Camera</th>
-                    <th>Thời gian</th>
-                    <th>Khu vực</th>
-                    <th>Chi nhánh</th>
-                    <th>Mức độ</th>
-                </tr>
-            </thead>
-
-            <tbody id="warehouseOilSpillDetailTableBody">
-            </tbody>
-        </table>
-    </div> -->
-
-</div>
-
-<!-- TRÀN DẦU XE TRA NẠP CHART TAB -->
-<div class="tab-content" id="event-charts-viewcar">
-
-    <!-- BIỂU ĐỒ -->
-    <!-- <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h3 class="header">Biểu đồ sự kiện tràn dầu xe tra nạp</h3>
-
-            <select id="vehicleOilSpillSelect" style="padding: 5px;">
-                <option value="day">Theo ngày (7 ngày)</option>
-                <option value="week">Theo tuần (4 tuần)</option>
-                <option value="month" selected>Theo tháng (12 tháng)</option>
-            </select>
-        </div>
-
-        <div class="chart-wrapper">
-            <canvas id="vehicleOilSpillChart"></canvas>
-        </div>
-    </div> -->
-
-    <!-- BẢNG CHI TIẾT -->
-    <!-- <div class="card" style="margin-top: 20px;">
-        <h3 class="header">Chi tiết sự kiện tràn dầu xe tra nạp</h3>
-
-        <table class="table" style="width: 100%; border-collapse: collapse;">
-            <thead>
-                <tr>
-                    <th>Mã sự kiện</th>
-                    <th>Biển số xe</th>
-                    <th>Camera</th>
-                    <th>AIBox</th>
-                    <th>Chi nhánh</th>
-                    <th>Thời gian</th>
-                    <th>Mức độ</th>
-                </tr>
-            </thead>
-
-            <tbody id="vehicleOilSpillDetailTableBody">
-            </tbody>
-        </table>
-    </div> -->
-
-</div>
-
-<!-- BIỂN SỐ XE CHART TAB -->
-<div class="tab-content" id="event-charts-viewoto">
-
-    <!-- BIỂU ĐỒ -->
-    <!-- <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h3 class="header">Biểu đồ sự kiện biển số xe</h3>
-
-            <select id="lprSelect" style="padding: 5px;">
-                <option value="day">Theo ngày (7 ngày)</option>
-                <option value="week">Theo tuần (4 tuần)</option>
-                <option value="month" selected>Theo tháng (12 tháng)</option>
-            </select>
-        </div>
-
-        <div class="chart-wrapper">
-            <canvas id="lprChart"></canvas>
-        </div>
-    </div> -->
-
-    <!-- BẢNG CHI TIẾT -->
-    <!-- <div class="card" style="margin-top: 20px;">
-        <h3 class="header">Chi tiết sự kiện biển số xe</h3>
-
-        <table class="table" style="width: 100%; border-collapse: collapse;">
-            <thead>
-                <tr>
-                    <th>Mã sự kiện</th>
-                    <th>AIBox</th>
-                    <th>Camera</th>
-                    <th>Chi nhánh</th>
-                    <th>Biển số xe</th>
-                    <th>Thời gian</th>
-                    <th>Hướng</th>
-                </tr>
-            </thead>
-
-            <tbody id="lprDetailTableBody">
-            </tbody>
-        </table>
-    </div> -->
-</div>
-</div>
-    
-
             </div>
-
+            </div>
+            </div>
         </div>
-         
- 
-            
-
-
-           
 <div id="fire-monitor" class="tab-content">
-
     <div class="dashboard-container">
         <div class="page-header">
             <h1>Giám sát báo cháy</h1>
@@ -2458,6 +2133,50 @@
 
                     </table>
                 </div>
+            
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <h3 class="header" style="border: none; margin: 0;">Sự kiện vận hành</h3>
+                                <span style="font-size: 0.85em; color: #888;" id="lastUpdatedTime">Cập nhật lần cuối: ...</span>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label>Lọc nhanh:</label>
+                                <select id="eventFilterType">
+                                    <option value="type">Theo loại sự kiện</option>
+                                    <option value="severity">Theo mức độ</option>
+                                    <option value="model">Theo mô hình AI</option>
+                                </select>
+                                <select id="eventFilterValue">
+                                    <option value="all">Tất cả</option>
+                                    <option value="va_cham">Va chạm xe</option>
+                                    <option value="ppe">Vi phạm PPE</option>
+                                </select>
+                                <input type="text" placeholder="Tìm kiếm..." class="search-box" style="padding: 8px;" id="eventSearchBox" onkeyup="filterEventTable()">
+                            </div>
+                            
+                            <div class="event-feed" style="max-height: 250px;">
+                                <table id="eventFeedTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã sự kiện</th>
+                                            <th>Loại sự kiện</th>
+                                            <th>Chi nhánh</th>
+                                            <th>Camera</th>
+                                            <th>Trạng thái</th>
+                                            <th>Hành động</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="eventFeedTableBody">
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- ket thuc -->
             </div>
 
             <div id="report-aicloud-health" class="tab-content">
@@ -2654,6 +2373,33 @@
                         </table>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <h3 class="header">Thời gian hoạt động và cảnh báo camera</h3>
+                            <div class="event-feed" style="max-height: 300px;">
+                                <table id="uptimeAlertTable">
+                                    <thead>
+                                        <tr>
+                                            <th>AIBox</th>
+                                            <th>Camera</th>
+                                            <th>Chi nhánh</th>
+                                            <th>Hoạt động (24 giờ)</th>
+                                            <th>Mất kết nối (24 giờ)</th>
+                                            <th>Thời gian mất kết nối</th>
+                                            <th>Sao lưu (Cloud)</th>
+                                            <th>Dung lượng (Còn lại)</th>
+                                            <th>Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="uptimeAlertTableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- ket thuc -->
             </div>
             
             <div id="report-ppe" class="tab-content">
@@ -3595,6 +3341,7 @@
 <script src="js/index.js"></script>
 <script src="js/cableTunnel.js"></script>
 <script src="js/operation.js"></script>
+<script src="js/SysAdmin.js"></script>
 </body>
 </html>
 <!-- @manhtien -->
