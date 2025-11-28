@@ -2885,7 +2885,7 @@ h2.header {
 }
 .notification-header {
   display: grid;
-  grid-template-columns: 2fr 4fr;
+  grid-template-columns: 2fr 3fr;
   gap: 10px;
   margin-bottom: 20px;
 }
@@ -2893,7 +2893,7 @@ h2.header {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-  width: 40%;
+  /* width: 40%; */
 }
 .notification-header .card {
   height: 100%;

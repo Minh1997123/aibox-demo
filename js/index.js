@@ -1983,29 +1983,29 @@ const generateLegend = (chart, elementId) => {
 
   // Map icon cho từng trạng thái
   const iconMap = {
-    'Đã xử lý': 'fa-circle-check',
-    'Đang xử lý': 'fa-hourglass-half',
-    'Chưa xử lý': 'fa-clock',
-    'Nghiêm trọng': 'fa-triangle-exclamation',
-    'Sự kiện nghiêm trọng': 'fa-triangle-exclamation'
+    "Đã xử lý": "fa-circle-check",
+    "Đang xử lý": "fa-hourglass-half",
+    "Chưa xử lý": "fa-clock",
+    "Nghiêm trọng": "fa-triangle-exclamation",
+    "Sự kiện nghiêm trọng": "fa-triangle-exclamation",
   };
 
   list.innerHTML = "";
   chart.data.labels.forEach((label, index) => {
     const color = chart.data.datasets[0].backgroundColor[index];
     // Tìm icon phù hợp dựa vào label
-    let iconClass = 'fa-circle';
+    let iconClass = "fa-circle";
     for (const [key, icon] of Object.entries(iconMap)) {
       if (label.includes(key)) {
         iconClass = icon;
         break;
       }
     }
-    
+
     const item = document.createElement("div");
     item.classList.add("donut-legend-item");
     item.innerHTML = `
-                    <i class="fa-solid ${iconClass}" style="color: ${color}; margin-right: 8px; font-size: 16px;"></i>
+                    <i class="fa-solid ${iconClass}" style="color: ${color};  font-size: 16px;"></i>
                     <span>${label}</span>
                 `;
     list.appendChild(item);

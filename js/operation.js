@@ -1,5 +1,4 @@
 const notification = document.getElementById("notification");
-console.log(notification);
 const notificationOperationData = [
   {
     number: 8,
