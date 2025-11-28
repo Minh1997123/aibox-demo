@@ -3,6 +3,7 @@ const sysAdmin = document.getElementById("SysAdmin");
 const aiModelSpeedCtx1 = document.getElementById("aiModelSpeedChart1");
 const aiModelAccuracyCtx1 = document.getElementById("aiModelAccuracyChart1");
 const systemStatusPieCtx1 = document.getElementById("systemStatusPieChart");
+
 new Chart(aiModelAccuracyCtx1, {
   type: "bar",
   data: aiModelAccuracyChartData,

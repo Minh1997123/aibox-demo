@@ -718,3 +718,13 @@ historyData.addEventListener("click", () => {
   const historyDataTab = document.getElementById("historyDataTab");
   historyDataTab.style.display = "block";
 });
+
+cableTunnel.addEventListener("click", () => {
+  document.querySelectorAll(".tab-content").forEach((content) => {
+    content.classList.remove("active");
+  });
+  document.querySelectorAll(".nav-item").forEach((nav) => {
+    nav.classList.remove("active");
+  });
+  console.log("cable tunnel clicked");
+});
