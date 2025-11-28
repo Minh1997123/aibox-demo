@@ -49,6 +49,7 @@ const cableTunnelDataList = [
         firmware_version: "v1.2.0",
       },
     ],
+    date: "2025-11-27 12:00:00",
   },
   {
     ham_id: 2,
@@ -601,7 +602,214 @@ const historyDataList = [
     thoi_gian: "2025-11-27 12:00:02",
   },
 ];
+const deviceDataList = [
+  {
+    tuyen:
+      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
+    ten_ham: "HN1-T12",
+    ten_lo: "HN1 T12 - 18T11.4-E1.30",
+    ten_thiet_bi: "Cảm biến nhiệt độ",
+    ten_san_pham: "EM500-PT100",
+    tinh_trang: "Hoạt động",
+    gia_tri: "31.5°C",
+    thoi_gian: "2025-11-27 12:00:00",
+  },
+  {
+    tuyen:
+      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
+    ten_ham: "HN1-T12",
+    ten_lo: "HN1 T12 - 18T11.4-E1.30",
+    ten_thiet_bi: "Cảm biến nhiệt độ",
+    ten_san_pham: "EM500-PT100",
+    tinh_trang: "Hoạt động",
+    gia_tri: "32.1°C",
+    thoi_gian: "2025-11-27 12:00:02",
+  },
 
+  {
+    tuyen:
+      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
+    ten_ham: "HN2-T12",
+    ten_lo: "HN2 T12 - 18T11.4-E1.30",
+    ten_thiet_bi: "Cảm biến nhiệt độ",
+    ten_san_pham: "EM500-PT100",
+    tinh_trang: "Hoạt động",
+    gia_tri: "30.8°C",
+    thoi_gian: "2025-11-27 12:00:02",
+  },
+  {
+    tuyen:
+      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
+    ten_ham: "HN2-T12",
+    ten_lo: "HN2 T12 - 18T11.4-E1.30",
+    ten_thiet_bi: "Cảm biến nhiệt độ",
+    ten_san_pham: "EM500-PT100",
+    tinh_trang: "Hoạt động",
+    gia_tri: "31.2°C",
+    thoi_gian: "2025-11-27 12:00:02",
+  },
+
+  {
+    tuyen:
+      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
+    ten_ham: "HN3-T12",
+    ten_lo: "HN3 T12 - 18T11.4-E1.30",
+    ten_thiet_bi: "Cảm biến nhiệt độ",
+    ten_san_pham: "EM500-PT100",
+    tinh_trang: "Hoạt động",
+    gia_tri: "32.3°C",
+    thoi_gian: "2025-11-27 12:00:02",
+  },
+  {
+    tuyen:
+      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
+    ten_ham: "HN3-T12",
+    ten_lo: "HN3 T12 - 18T11.4-E1.30",
+    ten_thiet_bi: "Cảm biến nhiệt độ",
+    ten_san_pham: "EM500-PT100",
+    tinh_trang: "Hoạt động",
+    gia_tri: "32.6°C",
+    thoi_gian: "2025-11-27 12:00:02",
+  },
+
+  {
+    tuyen:
+      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
+    ten_ham: "HN4-T12",
+    ten_lo: "HN4 T12 - 18T11.4-E1.30",
+    ten_thiet_bi: "Cảm biến nhiệt độ",
+    ten_san_pham: "EM500-PT100",
+    tinh_trang: "Hoạt động",
+    gia_tri: "29.4°C",
+    thoi_gian: "2025-11-27 12:00:02",
+  },
+  {
+    tuyen:
+      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
+    ten_ham: "HN4-T12",
+    ten_lo: "HN4 T12 - 18T11.4-E1.30",
+    ten_thiet_bi: "Cảm biến nhiệt độ",
+    ten_san_pham: "EM500-PT100",
+    tinh_trang: "Hoạt động",
+    gia_tri: "29.9°C",
+    thoi_gian: "2025-11-27 12:00:02",
+  },
+
+  {
+    tuyen:
+      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
+    ten_ham: "HN5-T12",
+    ten_lo: "HN5 T12 - 18T11.4-E1.30",
+    ten_thiet_bi: "Cảm biến nhiệt độ",
+    ten_san_pham: "EM500-PT100",
+    tinh_trang: "Hoạt động",
+    gia_tri: "30.1°C",
+    thoi_gian: "2025-11-27 12:00:02",
+  },
+  {
+    tuyen:
+      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
+    ten_ham: "HN5-T12",
+    ten_lo: "HN5 T12 - 18T11.4-E1.30",
+    ten_thiet_bi: "Cảm biến nhiệt độ",
+    ten_san_pham: "EM500-PT100",
+    tinh_trang: "Hoạt động",
+    gia_tri: "30.6°C",
+    thoi_gian: "2025-11-27 12:00:02",
+  },
+
+  {
+    tuyen:
+      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
+    ten_ham: "HN6-T12",
+    ten_lo: "HN6 T12 - 18T11.4-E1.30",
+    ten_thiet_bi: "Cảm biến nhiệt độ",
+    ten_san_pham: "EM500-PT100",
+    tinh_trang: "Hoạt động",
+    gia_tri: "33.2°C",
+    thoi_gian: "2025-11-27 12:00:02",
+  },
+  {
+    tuyen:
+      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
+    ten_ham: "HN6-T12",
+    ten_lo: "HN6 T12 - 18T11.4-E1.30",
+    ten_thiet_bi: "Cảm biến nhiệt độ",
+    ten_san_pham: "EM500-PT100",
+    tinh_trang: "Hoạt động",
+    gia_tri: "33.7°C",
+    thoi_gian: "2025-11-27 12:00:02",
+  },
+
+  {
+    tuyen:
+      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
+    ten_ham: "HN7-T12",
+    ten_lo: "HN7 T12 - 18T11.4-E1.30",
+    ten_thiet_bi: "Cảm biến nhiệt độ",
+    ten_san_pham: "EM500-PT100",
+    tinh_trang: "Hoạt động",
+    gia_tri: "28.9°C",
+    thoi_gian: "2025-11-27 12:00:02",
+  },
+  {
+    tuyen:
+      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
+    ten_ham: "HN7-T12",
+    ten_lo: "HN7 T12 - 18T11.4-E1.30",
+    ten_thiet_bi: "Cảm biến nhiệt độ",
+    ten_san_pham: "EM500-PT100",
+    tinh_trang: "Hoạt động",
+    gia_tri: "29.3°C",
+    thoi_gian: "2025-11-27 12:00:02",
+  },
+
+  {
+    tuyen:
+      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
+    ten_ham: "HN8-T12",
+    ten_lo: "HN8 T12 - 18T11.4-E1.30",
+    ten_thiet_bi: "Cảm biến nhiệt độ",
+    ten_san_pham: "EM500-PT100",
+    tinh_trang: "Hoạt động",
+    gia_tri: "32.0°C",
+    thoi_gian: "2025-11-27 12:00:02",
+  },
+  {
+    tuyen:
+      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
+    ten_ham: "HN8-T12",
+    ten_lo: "HN8 T12 - 18T11.4-E1.30",
+    ten_thiet_bi: "Cảm biến nhiệt độ",
+    ten_san_pham: "EM500-PT100",
+    tinh_trang: "Hoạt động",
+    gia_tri: "32.4°C",
+    thoi_gian: "2025-11-27 12:00:02",
+  },
+
+  {
+    tuyen:
+      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
+    ten_ham: "HN9-T12",
+    ten_lo: "HN9 T12 - 18T11.4-E1.30",
+    ten_thiet_bi: "Cảm biến nhiệt độ",
+    ten_san_pham: "EM500-PT100",
+    tinh_trang: "Hoạt động",
+    gia_tri: "30.4°C",
+    thoi_gian: "2025-11-27 12:00:02",
+  },
+  {
+    tuyen:
+      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
+    ten_ham: "HN9-T12",
+    ten_lo: "HN9 T12 - 18T11.4-E1.30",
+    ten_thiet_bi: "Cảm biến nhiệt độ",
+    ten_san_pham: "EM500-PT100",
+    tinh_trang: "Hoạt động",
+    gia_tri: "30.9°C",
+    thoi_gian: "2025-11-27 12:00:02",
+  },
+];
 // thiết lập dữ liệu cho biểu đồ
 const chartCurrentSensors = {
   type: "line",
@@ -615,19 +823,82 @@ const chartTempSensors = {
   type: "line",
   data: {},
 };
-const chartCurrentSensorsHandler = function (data) {
-  const newChart = new Chart();
+const chartCurrentSensorsHandler = function (data, chartName) {
+  new Chart();
 };
-const chartTempSensorsHandler = function (data) {
-  const newChart = new Chart();
+const chartTempSensorsHandler = function (data, chartName) {
+  new Chart();
 };
-const chartWaterSensorHandler = function (data) {
-  const newChart = new Chart();
+const chartWaterSensorHandler = function (data, chartName) {
+  new Chart();
 };
 
 // nội dung html
 // html cho tab cable tunnel
-const htmlCableTunnel = '<div classname="cable-tunnel"></div>';
+const tunnelDatahandler = function () {
+  let htmltunnel = ``;
+  cableTunnelDataList.forEach((item) => {
+    htmltunnel =
+      htmltunnel + `<option value="${item.ham_id}">hầm ${item.ham_id}</option>`;
+  });
+  return htmltunnel;
+};
+const htmlCableTunnel = `<div class="cable-tunnel tab-content" id="cableTunnelTab">
+                            <div class="card">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <h3 class="header" style="border: none; margin: 0;">cảm biến dòng điện</h3>
+                                    <div>
+                                      <select id="adminEventTimeSelect" style="padding: 5px;">
+                                        ${tunnelDatahandler()}
+                                      </select>
+                                      <select id="TunnelSelect" style="padding: 5px;">
+                                          <option value="week">Theo tuần (7 ngày)</option>
+                                          <option value="month">Theo tháng (4 tuần)</option>
+                                          <option value="year" selected>Theo năm (12 tháng)</option>
+                                      </select>
+                                    </div>
+                                </div>
+                                <div style="position: relative; flex: 1;">
+                                    <canvas id="adminChartCurrentSensors"></canvas>
+                                </div>
+                            </div>
+                              <div class="card">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <h3 class="header" style="border: none; margin: 0;">Cảm biến mực nước</h3>
+                                    <div>
+                                      <select id="adminEventTimeSelect" style="padding: 5px;">
+                                       ${tunnelDatahandler()}
+                                      </select>
+                                      <select id="TunnelSelect" style="padding: 5px;">
+                                          <option value="week">Theo tuần (7 ngày)</option>
+                                          <option value="month">Theo tháng (4 tuần)</option>
+                                          <option value="year" selected>Theo năm (12 tháng)</option>
+                                      </select>
+                                    </div>
+                                </div>
+                                <div style="position: relative; flex: 1;">
+                                    <canvas id="adminChartWaterSensor"></canvas>
+                                </div>
+                            </div>
+                              <div class="card">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <h3 class="header" style="border: none; margin: 0;">Cảm biến nhiệt độ</h3>
+                                    <div>
+                                      <select id="adminEventTimeSelect" style="padding: 5px;">
+                                      ${tunnelDatahandler()}
+                                      </select>
+                                      <select id="TunnelSelect" style="padding: 5px;">
+                                          <option value="week">Theo tuần (7 ngày)</option>
+                                          <option value="month">Theo tháng (4 tuần)</option>
+                                          <option value="year" selected>Theo năm (12 tháng)</option>
+                                      </select>
+                                    </div>
+                                </div>
+                                <div style="position: relative; flex: 1;">
+                                    <canvas id="adminChartTempSensors"></canvas>
+                                </div>
+                            </div>
+                        </div >`;
 // html cho tab history data
 const historyDataTableBodyHandler = function () {
   let row = "";
@@ -647,8 +918,7 @@ const historyDataTableBodyHandler = function () {
   });
   return row;
 };
-const htmlHistoryData = `
-<div class="history_data tab-content" id="historyDataTab">
+const htmlHistoryData = `<div class="history_data tab-content" id="historyDataTab">
         <div class="filter-section">
             <div class="filter-grid">
                 <div class="filter-item">
@@ -701,9 +971,103 @@ const htmlHistoryData = `
                         </tbody>
                     </table>
 </div>`;
-contentBody.innerHTML = contentBody.innerHTML + htmlHistoryData;
 // html cho tab device list
-const htmlDeviceList = '<div classname="device_list"></div>';
+const deviceListDataTableBodyHandler = function () {
+  let row = "";
+  deviceDataList.forEach((item) => {
+    const rowCurrent = `
+                        <tr>
+                        <td>${item.tuyen}</td>
+                        <td>${item.ten_ham}</td>
+                        <td>${item.ten_lo}</td>
+                        <td>${item.ten_thiet_bi}</td>
+                        <td>${item.tinh_trang}</td>
+                        <td>${item.gia_tri}</td>
+                        <td>${item.thoi_gian}</td>
+                        </tr>
+                        `;
+    row = row + rowCurrent;
+  });
+  return row;
+};
+const htmlDeviceList = `<div class="device_list tab-content" id="deviceListTab">
+ <div class="filter-section">
+            <div class="filter-grid">
+                <div class="filter-item">
+                    <label>Chi nhánh:</label>
+                    <select id="branchFilter">
+                        <option value="">Tất cả chi nhánh</option>
+                        <option value="hn">Hà Nội</option>
+                        <option value="hcm">Hồ Chí Minh</option>
+                        <option value="dn">Đà Nẵng</option>
+                    </select>
+                </div>
+
+                <div class="filter-item">
+                    <label>Khu vực:</label>
+                    <select id="areaFilter">
+                        <option value="">Tất cả khu vực</option>
+                        <option value="warehouse">Kho hàng</option>
+                        <option value="office">Văn phòng</option>
+                        <option value="production">Sản xuất</option>
+                        <option value="parking">Bãi đỗ xe</option>
+                    </select>
+                </div>
+
+                <div class="filter-item">
+                    <label>Mức độ:</label>
+                    <select id="severityFilter">
+                        <option value="">Tất cả mức độ</option>
+                        <option value="warning">Cảnh báo</option>
+                        <option value="danger">Nguy hiểm</option>
+                        <option value="critical">Rất nguy hiểm</option>
+                    </select>
+                </div>
+
+                <div class="filter-item">
+                    <label>Khoảng thời gian:</label>
+                    <div class="date-range">
+                        <input type="date" id="startDate" value="2025-11-12">
+                        <span>đến</span>
+                        <input type="date" id="endDate" value="2025-11-19">
+                    </div>
+                </div>
+            </div>
+        </div>
+                    <table>
+                        <thead>
+                            <tr><th>Tuyến</th><th>Tên Hầm</th><th>Tên Lộ</th><th>Tên thiết bị cảm biến</th><th>Tình trạng</th><th>giá trị</th><th>Thời gian</th></tr>
+                        </thead>
+                        <tbody id=historyDataTableBody">
+                        ${deviceListDataTableBodyHandler()}
+                        </tbody>
+                    </table>
+</div > `;
+// thêm html vào thẻ html content body
+contentBody.innerHTML =
+  contentBody.innerHTML + htmlHistoryData + htmlCableTunnel + htmlDeviceList;
+// hien thi cable tunnel
+cableTunnel.addEventListener("click", () => {
+  document.querySelectorAll(".tab-content").forEach((content) => {
+    content.classList.remove("active");
+  });
+  document.querySelectorAll(".nav-item").forEach((nav) => {
+    nav.classList.remove("active");
+  });
+  // hien thi tab cable tunnel
+  const historyDataTab = document.getElementById("cableTunnelTab");
+  historyDataTab.style.display = "block";
+  // hien thi bieu do
+  const adminChartCurrentSensors = document.getElementById(
+    "adminChartCurrentSensors"
+  );
+  const adminChartWaterSensor = document.getElementById(
+    "adminChartWaterSensor"
+  );
+  const adminChartTempSensors = document.getElementById(
+    "adminChartTempSensors"
+  );
+});
 // html cho tab category management
 const htmlCategoryManagement = '<div classname="category_management"></div>';
 
@@ -718,13 +1082,14 @@ historyData.addEventListener("click", () => {
   const historyDataTab = document.getElementById("historyDataTab");
   historyDataTab.style.display = "block";
 });
-
-cableTunnel.addEventListener("click", () => {
+// hien thi device list
+deviceList.addEventListener("click", () => {
   document.querySelectorAll(".tab-content").forEach((content) => {
     content.classList.remove("active");
   });
   document.querySelectorAll(".nav-item").forEach((nav) => {
     nav.classList.remove("active");
   });
-  console.log("cable tunnel clicked");
+  const deviceListTab = document.getElementById("deviceListTab");
+  deviceListTab.style.display = "block";
 });

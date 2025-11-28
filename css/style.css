@@ -2880,7 +2880,9 @@ h2.header {
 .card .ai-action-btn.delete {
   display: block !important;
 }
-.history_data {
+.history_data,
+.cable-tunnel,
+.device_list {
   display: none;
 }
 .notification-header {
