@@ -83,4 +83,3 @@ notificationOperationData.forEach((item) => {
   htmlElements = htmlElements + htmlElementsCurrent;
 });
 notification.innerHTML = htmlElements;
-console.log(notification);

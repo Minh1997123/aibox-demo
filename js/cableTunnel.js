@@ -1,417 +1,10 @@
 const cableTunnel = document.getElementById("cable-tunnel");
 const historyData = document.getElementById("history-data");
 const deviceList = document.getElementById("device-list");
+const waterLevel = document.getElementById("water-level");
 const categoryManagement = document.getElementById("category-management");
 const contentBody = document.getElementsByClassName("content-body")[0];
 // data
-const cableTunnelDataList = [
-  {
-    ham_id: 1,
-    current_sensors: [
-      {
-        current_chn1: 22,
-        current_chn2: 25,
-        current_chn3: 21,
-        current_chn1_total: 68,
-        firmware_version: "v1.0.0",
-        device_status: 1,
-      },
-      {
-        current_chn1: 31,
-        current_chn2: 29,
-        current_chn3: 33,
-        current_chn1_total: 93,
-        firmware_version: "v1.0.1",
-        device_status: 1,
-      },
-    ],
-    water_sensor: {
-      battery: 98,
-      temperature: 26.1,
-      distance: 1850,
-      position: "normal",
-      device_status: "on",
-      firmware_version: "v1.0.0",
-    },
-    temp_sensors: [
-      {
-        temp_sensor_id: "H1-T1",
-        battery: 96,
-        temperature: 27.4,
-        device_status: "on",
-        firmware_version: "v1.2.0",
-      },
-      {
-        temp_sensor_id: "H1-T2",
-        battery: 94,
-        temperature: 28.0,
-        device_status: "on",
-        firmware_version: "v1.2.0",
-      },
-    ],
-    date: "2025-11-27 12:00:00",
-  },
-  {
-    ham_id: 2,
-    current_sensors: [
-      {
-        current_chn1: 40,
-        current_chn2: 41,
-        current_chn3: 39,
-        current_chn1_total: 120,
-        firmware_version: "v1.0.2",
-        device_status: 1,
-      },
-      {
-        current_chn1: 44,
-        current_chn2: 42,
-        current_chn3: 46,
-        current_chn1_total: 132,
-        device_status: 1,
-        firmware_version: "v1.1.0",
-      },
-    ],
-    water_sensor: {
-      battery: 88,
-      temperature: 27.9,
-      distance: 1300,
-      position: "normal",
-      device_status: "on",
-      firmware_version: "v1.0.1",
-    },
-    temp_sensors: [
-      {
-        temp_sensor_id: "H2-T1",
-        battery: 89,
-        temperature: 30.2,
-        device_status: "on",
-        firmware_version: "v1.1.1",
-      },
-      {
-        temp_sensor_id: "H2-T2",
-        battery: 87,
-        temperature: 29.7,
-        device_status: "on",
-        firmware_version: "v1.1.1",
-      },
-    ],
-  },
-  {
-    ham_id: 3,
-    current_sensors: [
-      {
-        current_chn1: 12,
-        current_chn2: 14,
-        current_chn3: 11,
-        current_chn1_total: 37,
-        device_status: 1,
-        firmware_version: "v1.0.0",
-      },
-      {
-        current_chn1: 18,
-        current_chn2: 19,
-        current_chn3: 17,
-        current_chn1_total: 54,
-        device_status: 0,
-        firmware_version: "v1.0.0",
-      },
-    ],
-    water_sensor: {
-      battery: 70,
-      temperature: 25.8,
-      distance: 2400,
-      position: "normal",
-      device_status: "off",
-      firmware_version: "v1.0.2",
-    },
-    temp_sensors: [
-      {
-        temp_sensor_id: "H3-T1",
-        battery: 72,
-        temperature: 25.5,
-        device_status: "on",
-        firmware_version: "v1.0.0",
-      },
-      {
-        temp_sensor_id: "H3-T2",
-        battery: 69,
-        temperature: 26.1,
-        device_status: "on",
-        firmware_version: "v1.0.0",
-      },
-    ],
-  },
-  {
-    ham_id: 4,
-    current_sensors: [
-      {
-        current_chn1: 55,
-        current_chn2: 52,
-        current_chn3: 57,
-        current_chn1_total: 164,
-        device_status: 1,
-        firmware_version: "v1.0.3",
-      },
-      {
-        current_chn1: 61,
-        current_chn2: 59,
-        current_chn3: 62,
-        current_chn1_total: 182,
-        device_status: 1,
-        firmware_version: "v1.1.0",
-      },
-    ],
-    water_sensor: {
-      battery: 93,
-      temperature: 28.3,
-      distance: 1100,
-      position: "normal",
-      device_status: "on",
-      firmware_version: "v1.0.0",
-    },
-    temp_sensors: [
-      {
-        temp_sensor_id: "H4-T1",
-        battery: 90,
-        temperature: 31.1,
-        device_status: "on",
-        firmware_version: "v1.2.1",
-      },
-      {
-        temp_sensor_id: "H4-T2",
-        battery: 88,
-        temperature: 30.5,
-        device_status: "on",
-        firmware_version: "v1.2.1",
-      },
-    ],
-  },
-  {
-    ham_id: 5,
-    current_sensors: [
-      {
-        current_chn1: 7,
-        current_chn2: 6,
-        current_chn3: 8,
-        current_chn1_total: 21,
-        device_status: 1,
-        firmware_version: "v1.0.0",
-      },
-      {
-        current_chn1: 11,
-        current_chn2: 10,
-        current_chn3: 12,
-        current_chn1_total: 33,
-        device_status: 1,
-        firmware_version: "v1.0.0",
-      },
-    ],
-    water_sensor: {
-      battery: 99,
-      temperature: 26.5,
-      distance: 3000,
-      position: "normal",
-      device_status: "on",
-      firmware_version: "v1.0.2",
-    },
-    temp_sensors: [
-      {
-        temp_sensor_id: "H5-T1",
-        battery: 97,
-        temperature: 27.2,
-        device_status: "on",
-        firmware_version: "v1.2.0",
-      },
-      {
-        temp_sensor_id: "H5-T2",
-        battery: 96,
-        temperature: 27.9,
-        device_status: "on",
-        firmware_version: "v1.2.0",
-      },
-    ],
-  },
-  {
-    ham_id: 6,
-    current_sensors: [
-      {
-        current_chn1: 33,
-        current_chn2: 32,
-        current_chn3: 35,
-        current_chn1_total: 100,
-        device_status: 1,
-        firmware_version: "v1.0.1",
-      },
-      {
-        current_chn1: 36,
-        current_chn2: 34,
-        current_chn3: 37,
-        current_chn1_total: 107,
-        device_status: 1,
-        firmware_version: "v1.0.2",
-      },
-    ],
-    water_sensor: {
-      battery: 80,
-      temperature: 27.5,
-      distance: 1500,
-      position: "tilted",
-      device_status: "on",
-      firmware_version: "v1.0.0",
-    },
-    temp_sensors: [
-      {
-        temp_sensor_id: "H6-T1",
-        battery: 82,
-        temperature: 29.1,
-        device_status: "on",
-        firmware_version: "v1.1.5",
-      },
-      {
-        temp_sensor_id: "H6-T2",
-        battery: 80,
-        temperature: 29.6,
-        device_status: "on",
-        firmware_version: "v1.1.5",
-      },
-    ],
-  },
-  {
-    ham_id: 7,
-    current_sensors: [
-      {
-        current_chn1: 50,
-        current_chn2: 48,
-        current_chn3: 49,
-        current_chn1_total: 147,
-        device_status: 1,
-        firmware_version: "v1.2.0",
-      },
-      {
-        current_chn1: 52,
-        current_chn2: 53,
-        current_chn3: 51,
-        current_chn1_total: 156,
-        device_status: 1,
-        firmware_version: "v1.2.1",
-      },
-    ],
-    water_sensor: {
-      battery: 90,
-      temperature: 27.2,
-      distance: 1400,
-      position: "normal",
-      device_status: "on",
-      firmware_version: "v1.0.1",
-    },
-    temp_sensors: [
-      {
-        temp_sensor_id: "H7-T1",
-        battery: 92,
-        temperature: 30.1,
-        device_status: "on",
-        firmware_version: "v1.3.0",
-      },
-      {
-        temp_sensor_id: "H7-T2",
-        battery: 91,
-        temperature: 29.8,
-        device_status: "on",
-        firmware_version: "v1.3.0",
-      },
-    ],
-  },
-  {
-    ham_id: 8,
-    current_sensors: [
-      {
-        current_chn1: 16,
-        current_chn2: 18,
-        current_chn3: 17,
-        current_chn1_total: 51,
-        device_status: 0,
-        firmware_version: "v1.0.0",
-      },
-      {
-        current_chn1: 20,
-        current_chn2: 21,
-        current_chn3: 22,
-        current_chn1_total: 63,
-        device_status: 1,
-        firmware_version: "v1.0.2",
-      },
-    ],
-    water_sensor: {
-      battery: 74,
-      temperature: 25.7,
-      distance: 2500,
-      position: "normal",
-      device_status: "off",
-      firmware_version: "v1.0.0",
-    },
-    temp_sensors: [
-      {
-        temp_sensor_id: "H8-T1",
-        battery: 70,
-        temperature: 24.8,
-        device_status: "on",
-        firmware_version: "v1.0.0",
-      },
-      {
-        temp_sensor_id: "H8-T2",
-        battery: 69,
-        temperature: 25.3,
-        device_status: "on",
-        firmware_version: "v1.0.0",
-      },
-    ],
-  },
-  {
-    ham_id: 9,
-    current_sensors: [
-      {
-        current_chn1: 60,
-        current_chn2: 62,
-        current_chn3: 63,
-        current_chn1_total: 185,
-        device_status: 1,
-        firmware_version: "v1.2.1",
-      },
-      {
-        current_chn1: 67,
-        current_chn2: 65,
-        current_chn3: 66,
-        current_chn1_total: 198,
-        device_status: 1,
-        firmware_version: "v1.3.0",
-      },
-    ],
-    water_sensor: {
-      battery: 95,
-      temperature: 28.0,
-      distance: 900,
-      position: "normal",
-      device_status: "on",
-      firmware_version: "v1.0.3",
-    },
-    temp_sensors: [
-      {
-        temp_sensor_id: "H9-T1",
-        battery: 93,
-        temperature: 31.2,
-        device_status: "on",
-        firmware_version: "v1.2.4",
-      },
-      {
-        temp_sensor_id: "H9-T2",
-        battery: 92,
-        temperature: 30.9,
-        device_status: "on",
-        firmware_version: "v1.2.4",
-      },
-    ],
-  },
-];
 const historyDataList = [
   {
     tuyen:
@@ -602,254 +195,236 @@ const historyDataList = [
     thoi_gian: "2025-11-27 12:00:02",
   },
 ];
-const deviceDataList = [
+// template
+const templateSensorsList = [
   {
-    tuyen:
-      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
-    ten_ham: "HN1-T12",
-    ten_lo: "HN1 T12 - 18T11.4-E1.30",
-    ten_thiet_bi: "Cảm biến nhiệt độ",
-    ten_san_pham: "EM500-PT100",
-    tinh_trang: "Hoạt động",
-    gia_tri: "31.5°C",
-    thoi_gian: "2025-11-27 12:00:00",
-  },
-  {
-    tuyen:
-      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
-    ten_ham: "HN1-T12",
-    ten_lo: "HN1 T12 - 18T11.4-E1.30",
-    ten_thiet_bi: "Cảm biến nhiệt độ",
-    ten_san_pham: "EM500-PT100",
-    tinh_trang: "Hoạt động",
-    gia_tri: "32.1°C",
-    thoi_gian: "2025-11-27 12:00:02",
+    tempSensors: [
+      {
+        temp_sensor_id: "H1-T1",
+        temperature: 27.4,
+        battery: 98,
+        device_status: "on",
+      },
+      {
+        temp_sensor_id: "H1-T2",
+        temperature: 28.0,
+        battery: 97,
+        device_status: "on",
+      },
+    ],
+    time: "11-27 00",
   },
 
   {
-    tuyen:
-      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
-    ten_ham: "HN2-T12",
-    ten_lo: "HN2 T12 - 18T11.4-E1.30",
-    ten_thiet_bi: "Cảm biến nhiệt độ",
-    ten_san_pham: "EM500-PT100",
-    tinh_trang: "Hoạt động",
-    gia_tri: "30.8°C",
-    thoi_gian: "2025-11-27 12:00:02",
-  },
-  {
-    tuyen:
-      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
-    ten_ham: "HN2-T12",
-    ten_lo: "HN2 T12 - 18T11.4-E1.30",
-    ten_thiet_bi: "Cảm biến nhiệt độ",
-    ten_san_pham: "EM500-PT100",
-    tinh_trang: "Hoạt động",
-    gia_tri: "31.2°C",
-    thoi_gian: "2025-11-27 12:00:02",
+    tempSensors: [
+      {
+        temp_sensor_id: "H1-T1",
+        temperature: 27.7,
+        battery: 97,
+        device_status: "on",
+      },
+      {
+        temp_sensor_id: "H1-T2",
+        temperature: 28.2,
+        battery: 96,
+        device_status: "on",
+      },
+    ],
+    time: "11-27 03",
   },
 
   {
-    tuyen:
-      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
-    ten_ham: "HN3-T12",
-    ten_lo: "HN3 T12 - 18T11.4-E1.30",
-    ten_thiet_bi: "Cảm biến nhiệt độ",
-    ten_san_pham: "EM500-PT100",
-    tinh_trang: "Hoạt động",
-    gia_tri: "32.3°C",
-    thoi_gian: "2025-11-27 12:00:02",
-  },
-  {
-    tuyen:
-      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
-    ten_ham: "HN3-T12",
-    ten_lo: "HN3 T12 - 18T11.4-E1.30",
-    ten_thiet_bi: "Cảm biến nhiệt độ",
-    ten_san_pham: "EM500-PT100",
-    tinh_trang: "Hoạt động",
-    gia_tri: "32.6°C",
-    thoi_gian: "2025-11-27 12:00:02",
+    tempSensors: [
+      {
+        temp_sensor_id: "H1-T1",
+        temperature: 28.0,
+        battery: 96,
+        device_status: "on",
+      },
+      {
+        temp_sensor_id: "H1-T2",
+        temperature: 28.4,
+        battery: 95,
+        device_status: "on",
+      },
+    ],
+    time: "11-27 06",
   },
 
   {
-    tuyen:
-      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
-    ten_ham: "HN4-T12",
-    ten_lo: "HN4 T12 - 18T11.4-E1.30",
-    ten_thiet_bi: "Cảm biến nhiệt độ",
-    ten_san_pham: "EM500-PT100",
-    tinh_trang: "Hoạt động",
-    gia_tri: "29.4°C",
-    thoi_gian: "2025-11-27 12:00:02",
-  },
-  {
-    tuyen:
-      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
-    ten_ham: "HN4-T12",
-    ten_lo: "HN4 T12 - 18T11.4-E1.30",
-    ten_thiet_bi: "Cảm biến nhiệt độ",
-    ten_san_pham: "EM500-PT100",
-    tinh_trang: "Hoạt động",
-    gia_tri: "29.9°C",
-    thoi_gian: "2025-11-27 12:00:02",
+    tempSensors: [
+      {
+        temp_sensor_id: "H1-T1",
+        temperature: 28.2,
+        battery: 95,
+        device_status: "on",
+      },
+      {
+        temp_sensor_id: "H1-T2",
+        temperature: 28.6,
+        battery: 94,
+        device_status: "on",
+      },
+    ],
+    time: "11-27 09",
   },
 
   {
-    tuyen:
-      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
-    ten_ham: "HN5-T12",
-    ten_lo: "HN5 T12 - 18T11.4-E1.30",
-    ten_thiet_bi: "Cảm biến nhiệt độ",
-    ten_san_pham: "EM500-PT100",
-    tinh_trang: "Hoạt động",
-    gia_tri: "30.1°C",
-    thoi_gian: "2025-11-27 12:00:02",
-  },
-  {
-    tuyen:
-      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
-    ten_ham: "HN5-T12",
-    ten_lo: "HN5 T12 - 18T11.4-E1.30",
-    ten_thiet_bi: "Cảm biến nhiệt độ",
-    ten_san_pham: "EM500-PT100",
-    tinh_trang: "Hoạt động",
-    gia_tri: "30.6°C",
-    thoi_gian: "2025-11-27 12:00:02",
-  },
-
-  {
-    tuyen:
-      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
-    ten_ham: "HN6-T12",
-    ten_lo: "HN6 T12 - 18T11.4-E1.30",
-    ten_thiet_bi: "Cảm biến nhiệt độ",
-    ten_san_pham: "EM500-PT100",
-    tinh_trang: "Hoạt động",
-    gia_tri: "33.2°C",
-    thoi_gian: "2025-11-27 12:00:02",
-  },
-  {
-    tuyen:
-      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
-    ten_ham: "HN6-T12",
-    ten_lo: "HN6 T12 - 18T11.4-E1.30",
-    ten_thiet_bi: "Cảm biến nhiệt độ",
-    ten_san_pham: "EM500-PT100",
-    tinh_trang: "Hoạt động",
-    gia_tri: "33.7°C",
-    thoi_gian: "2025-11-27 12:00:02",
-  },
-
-  {
-    tuyen:
-      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
-    ten_ham: "HN7-T12",
-    ten_lo: "HN7 T12 - 18T11.4-E1.30",
-    ten_thiet_bi: "Cảm biến nhiệt độ",
-    ten_san_pham: "EM500-PT100",
-    tinh_trang: "Hoạt động",
-    gia_tri: "28.9°C",
-    thoi_gian: "2025-11-27 12:00:02",
-  },
-  {
-    tuyen:
-      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
-    ten_ham: "HN7-T12",
-    ten_lo: "HN7 T12 - 18T11.4-E1.30",
-    ten_thiet_bi: "Cảm biến nhiệt độ",
-    ten_san_pham: "EM500-PT100",
-    tinh_trang: "Hoạt động",
-    gia_tri: "29.3°C",
-    thoi_gian: "2025-11-27 12:00:02",
-  },
-
-  {
-    tuyen:
-      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
-    ten_ham: "HN8-T12",
-    ten_lo: "HN8 T12 - 18T11.4-E1.30",
-    ten_thiet_bi: "Cảm biến nhiệt độ",
-    ten_san_pham: "EM500-PT100",
-    tinh_trang: "Hoạt động",
-    gia_tri: "32.0°C",
-    thoi_gian: "2025-11-27 12:00:02",
-  },
-  {
-    tuyen:
-      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
-    ten_ham: "HN8-T12",
-    ten_lo: "HN8 T12 - 18T11.4-E1.30",
-    ten_thiet_bi: "Cảm biến nhiệt độ",
-    ten_san_pham: "EM500-PT100",
-    tinh_trang: "Hoạt động",
-    gia_tri: "32.4°C",
-    thoi_gian: "2025-11-27 12:00:02",
-  },
-
-  {
-    tuyen:
-      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
-    ten_ham: "HN9-T12",
-    ten_lo: "HN9 T12 - 18T11.4-E1.30",
-    ten_thiet_bi: "Cảm biến nhiệt độ",
-    ten_san_pham: "EM500-PT100",
-    tinh_trang: "Hoạt động",
-    gia_tri: "30.4°C",
-    thoi_gian: "2025-11-27 12:00:02",
-  },
-  {
-    tuyen:
-      "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M",
-    ten_ham: "HN9-T12",
-    ten_lo: "HN9 T12 - 18T11.4-E1.30",
-    ten_thiet_bi: "Cảm biến nhiệt độ",
-    ten_san_pham: "EM500-PT100",
-    tinh_trang: "Hoạt động",
-    gia_tri: "30.9°C",
-    thoi_gian: "2025-11-27 12:00:02",
+    tempSensors: [
+      {
+        temp_sensor_id: "H1-T1",
+        temperature: 28.5,
+        battery: 94,
+        device_status: "on",
+      },
+      {
+        temp_sensor_id: "H1-T2",
+        temperature: 28.8,
+        battery: 93,
+        device_status: "on",
+      },
+    ],
+    time: "11-27 12",
   },
 ];
-// thiết lập dữ liệu cho biểu đồ
-const chartCurrentSensors = {
-  type: "line",
-  data: {},
-};
-const chartWaterSensor = {
-  type: "line",
-  data: {},
-};
-const chartTempSensors = {
-  type: "line",
-  data: {},
-};
-const chartCurrentSensorsHandler = function (data, chartName) {
-  new Chart();
-};
-const chartTempSensorsHandler = function (data, chartName) {
-  new Chart();
-};
-const chartWaterSensorHandler = function (data, chartName) {
-  new Chart();
-};
+// dong dien
+const currentSensoreList = [
+  {
+    ham_id: 1,
+    current_sensors: {
+      sensor_id: "H1-C1",
+      current_chn1: 22,
+      current_chn2: 25,
+      current_chn3: 21,
+      current_total: 68,
+    },
+    time: "11-27 00",
+  },
+  {
+    ham_id: 1,
+    current_sensors: {
+      sensor_id: "H1-C1",
+      current_chn1: 23,
+      current_chn2: 26,
+      current_chn3: 22,
+      current_total: 71,
+    },
+    time: "11-27 03",
+  },
+  {
+    ham_id: 1,
+    current_sensors: {
+      sensor_id: "H1-C1",
+      current_chn1: 24,
+      current_chn2: 27,
+      current_chn3: 23,
+      current_total: 74,
+    },
+    time: "11-27 06",
+  },
+  {
+    ham_id: 1,
+    current_sensors: {
+      sensor_id: "H1-C1",
+      current_chn1: 25,
+      current_chn2: 27,
+      current_chn3: 24,
+      current_total: 76,
+    },
+    time: "11-27 09",
+  },
 
+  {
+    ham_id: 1,
+    current_sensors: {
+      sensor_id: "H1-C1",
+      current_chn1: 26,
+      current_chn2: 28,
+      current_chn3: 25,
+      current_total: 79,
+    },
+    time: "11-27 12",
+  },
+];
+// muc nuoc
+const waterSensorList = [
+  {
+    ham_id: 1,
+    water_sensor: {
+      sensor_id: "H1-W1",
+      distance: 1850,
+      battery: 98,
+      temperature: 26.1,
+      device_status: "on",
+    },
+    time: "11-27 00",
+  },
+  {
+    ham_id: 1,
+    water_sensor: {
+      sensor_id: "H1-W1",
+      distance: 1846,
+      battery: 97,
+      temperature: 26.2,
+      device_status: "on",
+    },
+    time: "11-27 03",
+  },
+  {
+    ham_id: 1,
+    water_sensor: {
+      sensor_id: "H1-W1",
+      distance: 1843,
+      battery: 97,
+      temperature: 26.3,
+      device_status: "on",
+    },
+    time: "11-27 06",
+  },
+  {
+    ham_id: 1,
+    water_sensor: {
+      sensor_id: "H1-W1",
+      distance: 1839,
+      battery: 96,
+      temperature: 26.5,
+      device_status: "on",
+    },
+    time: "11-27 09",
+  },
+  {
+    ham_id: 1,
+    water_sensor: {
+      sensor_id: "H1-W1",
+      distance: 1836,
+      battery: 95,
+      temperature: 26.7,
+      device_status: "on",
+    },
+    time: "11-27 12",
+  },
+];
+// muc canh bao muc nuoc
+const waterLevelList = [];
+console.log(templateSensorsList.map((item) => item.tempSensors[0].temperature));
 // nội dung html
 // html cho tab cable tunnel
-const tunnelDatahandler = function () {
-  let htmltunnel = ``;
-  cableTunnelDataList.forEach((item) => {
-    htmltunnel =
-      htmltunnel + `<option value="${item.ham_id}">hầm ${item.ham_id}</option>`;
-  });
-  return htmltunnel;
-};
+
+// const tunnelDatahandler = function () {
+//   let htmltunnel = ``;
+//   historyDataList.forEach((item) => {
+//     htmltunnel =
+//       htmltunnel + `<option value="${item.ham_id}">hầm ${item.ham_id}</option>`;
+//   });
+//   return htmltunnel;
+// };
 const htmlCableTunnel = `<div class="cable-tunnel tab-content" id="cableTunnelTab">
                             <div class="card">
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
                                     <h3 class="header" style="border: none; margin: 0;">cảm biến dòng điện</h3>
                                     <div>
                                       <select id="adminEventTimeSelect" style="padding: 5px;">
-                                        ${tunnelDatahandler()}
+                                        <option value="1">hầm 1</option>
                                       </select>
                                       <select id="TunnelSelect" style="padding: 5px;">
                                           <option value="week">Theo tuần (7 ngày)</option>
@@ -867,7 +442,7 @@ const htmlCableTunnel = `<div class="cable-tunnel tab-content" id="cableTunnelTa
                                     <h3 class="header" style="border: none; margin: 0;">Cảm biến mực nước</h3>
                                     <div>
                                       <select id="adminEventTimeSelect" style="padding: 5px;">
-                                       ${tunnelDatahandler()}
+                                        <option value="1">hầm 1</option>
                                       </select>
                                       <select id="TunnelSelect" style="padding: 5px;">
                                           <option value="week">Theo tuần (7 ngày)</option>
@@ -885,7 +460,7 @@ const htmlCableTunnel = `<div class="cable-tunnel tab-content" id="cableTunnelTa
                                     <h3 class="header" style="border: none; margin: 0;">Cảm biến nhiệt độ</h3>
                                     <div>
                                       <select id="adminEventTimeSelect" style="padding: 5px;">
-                                      ${tunnelDatahandler()}
+                                        <option value="1">hầm 1</option>
                                       </select>
                                       <select id="TunnelSelect" style="padding: 5px;">
                                           <option value="week">Theo tuần (7 ngày)</option>
@@ -974,7 +549,7 @@ const htmlHistoryData = `<div class="history_data tab-content" id="historyDataTa
 // html cho tab device list
 const deviceListDataTableBodyHandler = function () {
   let row = "";
-  deviceDataList.forEach((item) => {
+  historyDataList.forEach((item) => {
     const rowCurrent = `
                         <tr>
                         <td>${item.tuyen}</td>
@@ -991,7 +566,7 @@ const deviceListDataTableBodyHandler = function () {
   return row;
 };
 const htmlDeviceList = `<div class="device_list tab-content" id="deviceListTab">
- <div class="filter-section">
+          <div class="filter-section">
             <div class="filter-grid">
                 <div class="filter-item">
                     <label>Chi nhánh:</label>
@@ -1043,10 +618,237 @@ const htmlDeviceList = `<div class="device_list tab-content" id="deviceListTab">
                         </tbody>
                     </table>
 </div > `;
+// html cho tab thiet lap muc nuoc
+// const waterLevelDataTableBodyHandler = function () {
+//   let row = "";
+//   historyDataList.forEach((item) => {
+//     const rowCurrent = `
+//                         <tr>
+//                         <td>${item.tuyen}</td>
+//                         <td>${item.ten_ham}</td>
+//                         <td>${item.ten_lo}</td>
+//                         <td>${item.ten_thiet_bi}</td>
+//                         <td>${item.tinh_trang}</td>
+//                         <td>${item.gia_tri}</td>
+//                         <td>${item.thoi_gian}</td>
+//                         </tr>
+//                         `;
+//     row = row + rowCurrent;
+//   });
+//   return row;
+// };
+const htmlWaterLevelList = `<div class="water-Level tab-content" id="water-Level">
+ <div class="filter-section">
+            <div class="filter-grid">
+                <div class="filter-item">
+                    <label>Chi nhánh:</label>
+                    <select id="branchFilter">
+                        <option value="">Tất cả chi nhánh</option>
+                        <option value="hn">Hà Nội</option>
+                        <option value="hcm">Hồ Chí Minh</option>
+                        <option value="dn">Đà Nẵng</option>
+                    </select>
+                </div>
+
+                <div class="filter-item">
+                    <label>Khu vực:</label>
+                    <select id="areaFilter">
+                        <option value="">Tất cả khu vực</option>
+                        <option value="warehouse">Kho hàng</option>
+                        <option value="office">Văn phòng</option>
+                        <option value="production">Sản xuất</option>
+                        <option value="parking">Bãi đỗ xe</option>
+                    </select>
+                </div>
+
+                <div class="filter-item">
+                    <label>Mức độ:</label>
+                    <select id="severityFilter">
+                        <option value="">Tất cả mức độ</option>
+                        <option value="warning">Cảnh báo</option>
+                        <option value="danger">Nguy hiểm</option>
+                        <option value="critical">Rất nguy hiểm</option>
+                    </select>
+                </div>
+
+                <div class="filter-item">
+                    <label>Khoảng thời gian:</label>
+                    <div class="date-range">
+                        <input type="date" id="startDate" value="2025-11-12">
+                        <span>đến</span>
+                        <input type="date" id="endDate" value="2025-11-19">
+                    </div>
+                </div>
+            </div>
+        </div>
+                    <table>
+                        <thead>
+                            <tr><th>Loại thiết bị</th><th>Giá trin từ</th><th>Giá trị Đến</th><th>DELTA T</th><th>Mức cảnh báo</th><th>Chức năng</th></tr>
+                        </thead>
+                        <tbody id=historyDataTableBody">
+                        </tbody>
+                    </table>
+</div>`;
 // thêm html vào thẻ html content body
 contentBody.innerHTML =
-  contentBody.innerHTML + htmlHistoryData + htmlCableTunnel + htmlDeviceList;
-// hien thi cable tunnel
+  contentBody.innerHTML +
+  htmlHistoryData +
+  htmlCableTunnel +
+  htmlDeviceList +
+  htmlWaterLevelList;
+// hien thi dong dien
+const chartCurrentSensorsHandler = function () {
+  // bieu do 1
+  const adminChartCurrentSensors = document.getElementById(
+    "adminChartCurrentSensors"
+  );
+  new Chart(adminChartCurrentSensors, {
+    type: "line",
+    data: {
+      labels: currentSensoreList.map((item) => item.time),
+      datasets: [
+        {
+          label: "Pha 1(current_chn1)",
+          data: currentSensoreList.map(
+            (item) => item.current_sensors.current_chn1
+          ),
+          borderColor: "rgb(75, 192, 192)",
+        },
+        {
+          label: "Pha 2(current_chn2)",
+          data: currentSensoreList.map(
+            (item) => item.current_sensors.current_chn2
+          ),
+          borderColor: "yellow",
+        },
+        {
+          label: "Pha 3(current_chn3)",
+          data: currentSensoreList.map(
+            (item) => item.current_sensors.current_chn3
+          ),
+          borderColor: "green",
+        },
+        {
+          label: "Ngưỡng cảnh báo (100)",
+          data: currentSensoreList.map(() => 100),
+          borderColor: "red",
+        },
+      ],
+    },
+    options: {
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: "Thời gian (giờ)",
+          },
+        },
+        y: {
+          title: {
+            display: true,
+            text: "Dòng điện(A)",
+          },
+        },
+      },
+    },
+  });
+};
+// hien thi cam bien nhiet do
+const chartTempSensorsHandler = function () {
+  // bieu do 2
+  const adminChartTempSensors = document.getElementById(
+    "adminChartTempSensors"
+  );
+  new Chart(adminChartTempSensors, {
+    type: "line",
+    data: {
+      labels: templateSensorsList.map((item) => item.time),
+      datasets: [
+        {
+          label: "Cảm biến 1",
+          data: templateSensorsList.map(
+            (item) => item.tempSensors[0].temperature
+          ),
+          borderColor: "rgb(75, 192, 192)",
+        },
+        {
+          label: "Cảm biến 2",
+          data: templateSensorsList.map(
+            (item) => item.tempSensors[1].temperature
+          ),
+          borderColor: "yellow",
+        },
+        {
+          label: "Ngưỡng cảnh báo",
+          data: templateSensorsList.map(() => 41),
+          borderColor: "red",
+        },
+      ],
+    },
+    options: {
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: "Thời gian (giờ)",
+          },
+        },
+        y: {
+          title: {
+            display: true,
+            text: "Nhiều độ(°C)",
+          },
+        },
+      },
+    },
+  });
+};
+// hien thi muc nuoc
+const chartWaterSensorHandler = function () {
+  // bieu do 3
+  const adminChartWaterSensor = document.getElementById(
+    "adminChartWaterSensor"
+  );
+  new Chart(adminChartWaterSensor, {
+    type: "line",
+    data: {
+      labels: waterSensorList.map((item) => item.time),
+      datasets: [
+        {
+          label: "Cảm biến 1",
+          data: waterSensorList.map((item) => item.water_sensor.distance),
+          borderColor: "rgb(75, 192, 192)",
+        },
+        {
+          label: "Cảm biến 2",
+          data: waterSensorList.map(() => 2500),
+          borderColor: "yellow",
+        },
+        {
+          label: "Ngưỡng cảnh báo",
+          data: waterSensorList.map(() => 2200),
+          borderColor: "red",
+        },
+      ],
+    },
+    options: {
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: "Thời gian (giờ)",
+          },
+        },
+        y: {
+          title: {
+            display: true,
+            text: "khoảng cách từ cảm biến (mm) (khoảng cách thấp = mực nước cao)",
+          },
+        },
+      },
+    },
+  });
+};
 cableTunnel.addEventListener("click", () => {
   document.querySelectorAll(".tab-content").forEach((content) => {
     content.classList.remove("active");
@@ -1058,19 +860,11 @@ cableTunnel.addEventListener("click", () => {
   const historyDataTab = document.getElementById("cableTunnelTab");
   historyDataTab.style.display = "block";
   // hien thi bieu do
-  const adminChartCurrentSensors = document.getElementById(
-    "adminChartCurrentSensors"
-  );
-  const adminChartWaterSensor = document.getElementById(
-    "adminChartWaterSensor"
-  );
-  const adminChartTempSensors = document.getElementById(
-    "adminChartTempSensors"
-  );
+  chartCurrentSensorsHandler();
+  chartWaterSensorHandler();
+  chartTempSensorsHandler();
 });
-// html cho tab category management
-const htmlCategoryManagement = '<div classname="category_management"></div>';
-
+// hieenr thi tab history data
 historyData.addEventListener("click", () => {
   document.querySelectorAll(".tab-content").forEach((content) => {
     content.classList.remove("active");
@@ -1078,7 +872,6 @@ historyData.addEventListener("click", () => {
   document.querySelectorAll(".nav-item").forEach((nav) => {
     nav.classList.remove("active");
   });
-  // hieenr thi tab history data
   const historyDataTab = document.getElementById("historyDataTab");
   historyDataTab.style.display = "block";
 });
@@ -1092,4 +885,15 @@ deviceList.addEventListener("click", () => {
   });
   const deviceListTab = document.getElementById("deviceListTab");
   deviceListTab.style.display = "block";
+});
+// hien thi thiet lap muc canh bao nuoc
+waterLevel.addEventListener("click", () => {
+  document.querySelectorAll(".tab-content").forEach((content) => {
+    content.classList.remove("active");
+  });
+  document.querySelectorAll(".nav-item").forEach((nav) => {
+    nav.classList.remove("active");
+  });
+  const waterLevel = document.getElementById("water-Level");
+  waterLevel.style.display = "block";
 });

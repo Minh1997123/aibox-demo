@@ -2882,7 +2882,8 @@ h2.header {
 }
 .history_data,
 .cable-tunnel,
-.device_list {
+.device_list,
+.water-Level {
   display: none;
 }
 .notification-header {
