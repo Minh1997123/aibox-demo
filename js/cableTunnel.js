@@ -405,7 +405,48 @@ const waterSensorList = [
   },
 ];
 // muc canh bao muc nuoc
-const waterLevelList = [];
+const waterLevelList = [
+  {
+    device_type: "hầm nối cáp - cảm biến nhiệt độ",
+    value_from: 2000,
+    value_to: 1800,
+    deltaT: 30,
+    color_code: "#4CAF50",
+    alert_level: 1,
+  },
+  {
+    device_type: "hầm nối cáp - cảm biến nhiệt độ",
+    value_from: 1799,
+    value_to: 1500,
+    deltaT: 30,
+    color_code: "#FFC107",
+    alert_level: 2,
+  },
+  {
+    device_type: "hầm nối cáp - cảm biến nhiệt độ",
+    value_from: 1499,
+    value_to: 1200,
+    deltaT: 20,
+    color_code: "#FF9800",
+    alert_level: 3,
+  },
+  {
+    device_type: "hầm nối cáp - cảm biến nhiệt độ",
+    value_from: 1199,
+    value_to: 800,
+    deltaT: 15,
+    color_code: "#F44336",
+    alert_level: 4,
+  },
+  {
+    device_type: "hầm nối cáp - cảm biến nhiệt độ",
+    value_from: 799,
+    value_to: 0,
+    deltaT: 10,
+    color_code: "#B71C1C",
+    alert_level: 4,
+  },
+];
 console.log(templateSensorsList.map((item) => item.tempSensors[0].temperature));
 // nội dung html
 // html cho tab cable tunnel
@@ -618,25 +659,37 @@ const htmlDeviceList = `<div class="device_list tab-content" id="deviceListTab">
                         </tbody>
                     </table>
 </div > `;
+
 // html cho tab thiet lap muc nuoc
-// const waterLevelDataTableBodyHandler = function () {
-//   let row = "";
-//   historyDataList.forEach((item) => {
-//     const rowCurrent = `
-//                         <tr>
-//                         <td>${item.tuyen}</td>
-//                         <td>${item.ten_ham}</td>
-//                         <td>${item.ten_lo}</td>
-//                         <td>${item.ten_thiet_bi}</td>
-//                         <td>${item.tinh_trang}</td>
-//                         <td>${item.gia_tri}</td>
-//                         <td>${item.thoi_gian}</td>
-//                         </tr>
-//                         `;
-//     row = row + rowCurrent;
-//   });
-//   return row;
-// };
+const waterLevelDataTableBodyHandler = function () {
+  let row = "";
+  waterLevelList.forEach((item) => {
+    const rowCurrent = `
+                      <tr>
+                        <td>${item.device_type}</td>
+                        <td>${item.value_from}</td>
+                        <td>${item.value_to}</td>
+                        <td>${item.deltaT}</td>
+                        <td><div style="display: flex;justify-content: space-between;width:50%;">
+                        ${item.color_code} <div style="background-color:${item.color_code}; height: 1rem ;aspect-ratio:1/1;"></div></td>
+                        </div>
+                        <td>Mức ${item.alert_level}</td>
+                        <td>
+                        <button class="ai-action-btn edit" 
+                                style="background:#f1c40f; color:white; padding:6px 10px; border:none; border-radius:4px;">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button class="ai-action-btn delete" 
+                                style="background:#e74c3c; color:white; padding:6px 10px; border:none; border-radius:4px; ">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                        </td>
+                      </tr>
+                        `;
+    row = row + rowCurrent;
+  });
+  return row;
+};
 const htmlWaterLevelList = `<div class="water-Level tab-content" id="water-Level">
  <div class="filter-section">
             <div class="filter-grid">
@@ -683,9 +736,10 @@ const htmlWaterLevelList = `<div class="water-Level tab-content" id="water-Level
         </div>
                     <table>
                         <thead>
-                            <tr><th>Loại thiết bị</th><th>Giá trin từ</th><th>Giá trị Đến</th><th>DELTA T</th><th>Mức cảnh báo</th><th>Chức năng</th></tr>
+                            <tr><th>Loại thiết bị</th><th>Giá trin từ</th><th>Giá trị Đến</th><th>DELTA T</th><th>Mã màu</th><th>Mức cảnh báo</th><th>Chức năng</th></tr>
                         </thead>
                         <tbody id=historyDataTableBody">
+                        ${waterLevelDataTableBodyHandler()}
                         </tbody>
                     </table>
 </div>`;
