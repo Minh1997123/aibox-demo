@@ -336,6 +336,112 @@ const waterLevelList = [
 
 // nội dung html
 // html cho tab cable tunnel
+const htmlCableTunnelNotifi = `<div class="row card-group-height-2">
+                    <div class="col-4">
+                        <div class="card card-full-height" style="padding: 20px;">
+                            <h3 class="header" style="margin-bottom: 16px;">Số lần vượt ngưỡng của cảm biến điện áp</h3>
+                            <div style="
+                                        display: flex;
+                                        align-items: center;
+                                        gap: 55px;
+                                        padding: 20px;
+                                        background: linear-gradient(to bottom, #f8fbff, #ffffff);
+                                        border-radius: 16px;
+                                    ">
+                                <div style="
+                                            width: 60px;
+                                            height: 60px;
+                                            background: #ffe5e5;
+                                            border-radius: 16px;
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            flex-shrink: 0;
+                                        ">
+                                    <i class="fa-solid fa-triangle-exclamation"
+                                        style="font-size: 28px; color: #ff4d4f;"></i>
+                                </div>
+                          
+                                <div>
+                                    <div id="unprocessedEvents"
+                                        style="font-size: 32px; font-weight: 700; margin-bottom: 6px;">
+                                        45
+                                    </div>
+                                    <p style="color: #666; margin: 0; font-size: 15px;">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card card-full-height" style="padding: 20px;">
+                            <h3 class="header" style="margin-bottom: 16px;">Số lần vượt ngưỡng của cảm biến mực nước</h3>
+                            <div style="
+                                        display: flex;
+                                        align-items: center;
+                                        gap: 55px; /* TĂNG KHOẢNG CÁCH TẠI ĐÂY */
+                                        padding: 20px;
+                                        background: linear-gradient(to bottom, #f8fbff, #ffffff);
+                                        border-radius: 16px;
+                                    ">
+                                <div style="
+                                            width: 60px;
+                                            height: 60px;
+                                            background: #fffce5;
+                                            border-radius: 16px;
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            flex-shrink: 0;
+                                        ">
+                                    <i class="fa-solid fa-clock" style="font-size: 28px; color: #ffbb4d;"></i>
+                                </div>
+                                <div>
+                                    <div id="unprocessedEvents"
+                                        style="font-size: 32px; font-weight: 700; margin-bottom: 6px;">
+                                        9
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card card-full-height" style="padding: 20px;">
+                            <h3 class="header" style="margin-bottom: 16px;">Số lần vượt ngưỡng của cảm biến nhiệt độ</h3>
+                            <div style="
+                                        display: flex;
+                                        align-items: center;
+                                        gap: 55px; 
+                                        padding: 20px;
+                                        background: linear-gradient(to bottom, #f8fbff, #ffffff);
+                                        border-radius: 16px;
+                                    ">
+                                <div style="
+                                            width: 60px;
+                                            height: 60px;
+                                            background: #ffffe5;
+                                            border-radius: 16px;
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            flex-shrink: 0;
+                                        ">
+                                    <i class="fa-solid fa-person" style="font-size: 28px; color: #ff914d;"></i>
+                                </div>
+                
+                                <div>
+                                    <div id="unprocessedEvents"
+                                        style="font-size: 32px; font-weight: 700; margin-bottom: 6px;">
+                                        8
+                                    </div>
+                                    <p style="color: #666; margin: 0; font-size: 15px;">
+               
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
 const htmlCableTunnel = `<div class="cable-tunnel tab-content" id="cableTunnelTab">
                             <div class="card">
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -391,6 +497,7 @@ const htmlCableTunnel = `<div class="cable-tunnel tab-content" id="cableTunnelTa
                                     <canvas id="adminChartTempSensors"></canvas>
                                 </div>
                             </div>
+                            ${htmlCableTunnelNotifi}
                         </div >`;
 // html cho tab history data
 const historyDataTableBodyHandler = function () {
@@ -536,7 +643,6 @@ const htmlDeviceList = `<div class="device_list tab-content" id="deviceListTab">
                         </tbody>
                     </table>
 </div > `;
-
 // html cho tab thiet lap muc nuoc
 const waterLevelDataTableBodyHandler = function () {
   let row = "";
