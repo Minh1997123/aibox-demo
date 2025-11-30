@@ -4,6 +4,17 @@ const deviceList = document.getElementById("device-list");
 const waterLevel = document.getElementById("water-level");
 const categoryManagement = document.getElementById("category-management");
 const contentBody = document.getElementsByClassName("content-body")[0];
+
+// ngay gio hien thi
+const labelMap = {
+  0: "11-27 00",
+  1: "11-27 03",
+  2: "11-27 06",
+  3: "11-27 09",
+  4: "11-27 12",
+  5: "11-27 15",
+  6: "11-27 18",
+};
 // data
 const historyDataList = [
   {
@@ -196,213 +207,88 @@ const historyDataList = [
   },
 ];
 // template
-const templateSensorsList = [
-  {
-    tempSensors: [
-      {
-        temp_sensor_id: "H1-T1",
-        temperature: 27.4,
-        battery: 98,
-        device_status: "on",
-      },
-      {
-        temp_sensor_id: "H1-T2",
-        temperature: 28.0,
-        battery: 97,
-        device_status: "on",
-      },
-    ],
-    time: "11-27 00",
-  },
-
-  {
-    tempSensors: [
-      {
-        temp_sensor_id: "H1-T1",
-        temperature: 27.7,
-        battery: 97,
-        device_status: "on",
-      },
-      {
-        temp_sensor_id: "H1-T2",
-        temperature: 28.2,
-        battery: 96,
-        device_status: "on",
-      },
-    ],
-    time: "11-27 03",
-  },
-
-  {
-    tempSensors: [
-      {
-        temp_sensor_id: "H1-T1",
-        temperature: 28.0,
-        battery: 96,
-        device_status: "on",
-      },
-      {
-        temp_sensor_id: "H1-T2",
-        temperature: 28.4,
-        battery: 95,
-        device_status: "on",
-      },
-    ],
-    time: "11-27 06",
-  },
-
-  {
-    tempSensors: [
-      {
-        temp_sensor_id: "H1-T1",
-        temperature: 28.2,
-        battery: 95,
-        device_status: "on",
-      },
-      {
-        temp_sensor_id: "H1-T2",
-        temperature: 28.6,
-        battery: 94,
-        device_status: "on",
-      },
-    ],
-    time: "11-27 09",
-  },
-
-  {
-    tempSensors: [
-      {
-        temp_sensor_id: "H1-T1",
-        temperature: 28.5,
-        battery: 94,
-        device_status: "on",
-      },
-      {
-        temp_sensor_id: "H1-T2",
-        temperature: 28.8,
-        battery: 93,
-        device_status: "on",
-      },
-    ],
-    time: "11-27 12",
-  },
-];
+const templateSensorsList = {
+  temperature1: [
+    { x: 0, y: 22.5 },
+    { x: 0.3, y: 27.3 },
+    { x: 1, y: 27.3 },
+    { x: 1.1, y: 22.5 },
+    { x: 2, y: 23.1 },
+    { x: 3, y: 28.7 },
+    { x: 3.3, y: 23.1 },
+    { x: 4, y: 24.4 },
+    { x: 5, y: 26.9 },
+    { x: 5.4, y: 28.7 },
+    { x: 5.7, y: 24.4 },
+    { x: 6, y: 21.8 },
+  ],
+  temperature2: [
+    { x: 0, y: 29.4 },
+    { x: 0.8, y: 29.4 },
+    { x: 1, y: 23.9 },
+    { x: 2, y: 27.8 },
+    { x: 2.6, y: 26.9 },
+    { x: 3, y: 22.5 },
+    { x: 3.7, y: 21.8 },
+    { x: 4, y: 27.3 },
+    { x: 4.3, y: 27.8 },
+    { x: 5, y: 23.1 },
+    { x: 5.9, y: 23.9 },
+    { x: 6, y: 28.7 },
+  ],
+};
 // dong dien
 const currentSensoreList = [
   {
-    ham_id: 1,
-    current_sensors: {
-      sensor_id: "H1-C1",
-      current_chn1: 22,
-      current_chn2: 25,
-      current_chn3: 21,
-      current_total: 68,
-    },
-    time: "11-27 00",
+    x: 1,
+    y: { current_chn1: 18, current_chn2: 29, current_chn3: 24 },
   },
   {
-    ham_id: 1,
-    current_sensors: {
-      sensor_id: "H1-C1",
-      current_chn1: 23,
-      current_chn2: 26,
-      current_chn3: 22,
-      current_total: 71,
-    },
-    time: "11-27 03",
+    x: 1.5,
+    y: { current_chn1: 19, current_chn2: 27, current_chn3: 22 },
   },
   {
-    ham_id: 1,
-    current_sensors: {
-      sensor_id: "H1-C1",
-      current_chn1: 24,
-      current_chn2: 27,
-      current_chn3: 23,
-      current_total: 74,
-    },
-    time: "11-27 06",
+    x: 2,
+    y: { current_chn1: 30, current_chn2: 22, current_chn3: 27 },
   },
   {
-    ham_id: 1,
-    current_sensors: {
-      sensor_id: "H1-C1",
-      current_chn1: 25,
-      current_chn2: 27,
-      current_chn3: 24,
-      current_total: 76,
-    },
-    time: "11-27 09",
+    x: 3,
+    y: { current_chn1: 25, current_chn2: 31, current_chn3: 19 },
   },
-
   {
-    ham_id: 1,
-    current_sensors: {
-      sensor_id: "H1-C1",
-      current_chn1: 26,
-      current_chn2: 28,
-      current_chn3: 25,
-      current_total: 79,
-    },
-    time: "11-27 12",
+    x: 3.5,
+    y: { current_chn1: 31, current_chn2: 24, current_chn3: 29 },
+  },
+  {
+    x: 4,
+    y: { current_chn1: 33, current_chn2: 26, current_chn3: 28 },
+  },
+  {
+    x: 5,
+    y: { current_chn1: 21, current_chn2: 34, current_chn3: 23 },
+  },
+  {
+    x: 5.5,
+    y: { current_chn1: 28, current_chn2: 33, current_chn3: 21 },
+  },
+  {
+    x: 6,
+    y: { current_chn1: 29, current_chn2: 20, current_chn3: 30 },
+  },
+  {
+    x: 7,
+    y: { current_chn1: 32, current_chn2: 28, current_chn3: 18 },
   },
 ];
 // muc nuoc
 const waterSensorList = [
-  {
-    ham_id: 1,
-    water_sensor: {
-      sensor_id: "H1-W1",
-      distance: 1850,
-      battery: 98,
-      temperature: 26.1,
-      device_status: "on",
-    },
-    time: "11-27 00",
-  },
-  {
-    ham_id: 1,
-    water_sensor: {
-      sensor_id: "H1-W1",
-      distance: 1846,
-      battery: 97,
-      temperature: 26.2,
-      device_status: "on",
-    },
-    time: "11-27 03",
-  },
-  {
-    ham_id: 1,
-    water_sensor: {
-      sensor_id: "H1-W1",
-      distance: 1843,
-      battery: 97,
-      temperature: 26.3,
-      device_status: "on",
-    },
-    time: "11-27 06",
-  },
-  {
-    ham_id: 1,
-    water_sensor: {
-      sensor_id: "H1-W1",
-      distance: 1839,
-      battery: 96,
-      temperature: 26.5,
-      device_status: "on",
-    },
-    time: "11-27 09",
-  },
-  {
-    ham_id: 1,
-    water_sensor: {
-      sensor_id: "H1-W1",
-      distance: 1836,
-      battery: 95,
-      temperature: 26.7,
-      device_status: "on",
-    },
-    time: "11-27 12",
-  },
+  { x: 0, y: 1850 },
+  { x: 1, y: 1780 },
+  { x: 2, y: 1925 },
+  { x: 3, y: 1700 },
+  { x: 4, y: 1830 },
+  { x: 5, y: 1755 },
+  { x: 6, y: 1905 },
 ];
 // muc canh bao muc nuoc
 const waterLevelList = [
@@ -447,18 +333,9 @@ const waterLevelList = [
     alert_level: 4,
   },
 ];
-console.log(templateSensorsList.map((item) => item.tempSensors[0].temperature));
+
 // nội dung html
 // html cho tab cable tunnel
-
-// const tunnelDatahandler = function () {
-//   let htmltunnel = ``;
-//   historyDataList.forEach((item) => {
-//     htmltunnel =
-//       htmltunnel + `<option value="${item.ham_id}">hầm ${item.ham_id}</option>`;
-//   });
-//   return htmltunnel;
-// };
 const htmlCableTunnel = `<div class="cable-tunnel tab-content" id="cableTunnelTab">
                             <div class="card">
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -750,6 +627,7 @@ contentBody.innerHTML =
   htmlCableTunnel +
   htmlDeviceList +
   htmlWaterLevelList;
+
 // hien thi dong dien
 const chartCurrentSensorsHandler = function () {
   // bieu do 1
@@ -763,38 +641,65 @@ const chartCurrentSensorsHandler = function () {
       datasets: [
         {
           label: "Pha 1(current_chn1)",
-          data: currentSensoreList.map(
-            (item) => item.current_sensors.current_chn1
-          ),
+          data: currentSensoreList.map((item) => {
+            return { x: item.x - 1, y: item.y.current_chn1 };
+          }),
+
+          pointRadius: 5,
+          pointBackgroundColor: "rgb(75, 192, 192)",
           borderColor: "rgb(75, 192, 192)",
         },
         {
           label: "Pha 2(current_chn2)",
-          data: currentSensoreList.map(
-            (item) => item.current_sensors.current_chn2
-          ),
+          data: currentSensoreList.map((item) => {
+            return { x: item.x - 1, y: item.y.current_chn2 };
+          }),
+          pointRadius: 5,
+          pointBackgroundColor: "yellow",
           borderColor: "yellow",
         },
         {
           label: "Pha 3(current_chn3)",
-          data: currentSensoreList.map(
-            (item) => item.current_sensors.current_chn3
-          ),
+          data: currentSensoreList.map((item) => {
+            return { x: item.x - 1, y: item.y.current_chn3 };
+          }),
+          pointRadius: 5,
+          pointBackgroundColor: "green",
           borderColor: "green",
         },
         {
           label: "Ngưỡng cảnh báo (100)",
-          data: currentSensoreList.map(() => 100),
+          data: [
+            { x: 0, y: 29 },
+            { x: 1, y: 29 },
+            { x: 2, y: 29 },
+            { x: 3, y: 29 },
+            { x: 4, y: 29 },
+            { x: 5, y: 29 },
+            { x: 6, y: 29 },
+          ],
           borderColor: "red",
+          pointRadius: 0,
+          borderDash: [5, 5],
         },
       ],
     },
     options: {
       scales: {
         x: {
+          type: "linear",
           title: {
+            type: "linear",
+            ticks: {
+              stepSize: 5,
+            },
             display: true,
             text: "Thời gian (giờ)",
+          },
+          ticks: {
+            callback: function (value) {
+              return labelMap[value] ?? "";
+            },
           },
         },
         y: {
@@ -816,32 +721,51 @@ const chartTempSensorsHandler = function () {
   new Chart(adminChartTempSensors, {
     type: "line",
     data: {
-      labels: templateSensorsList.map((item) => item.time),
       datasets: [
         {
           label: "Cảm biến 1",
-          data: templateSensorsList.map(
-            (item) => item.tempSensors[0].temperature
-          ),
+          data: templateSensorsList.temperature1.map((item) => {
+            return { x: item.x, y: item.y };
+          }),
+          pointRadius: 5,
           borderColor: "rgb(75, 192, 192)",
+          pointBackgroundColor: "rgb(75, 192, 192)",
         },
         {
           label: "Cảm biến 2",
-          data: templateSensorsList.map(
-            (item) => item.tempSensors[1].temperature
-          ),
+          data: templateSensorsList.temperature2.map((item) => {
+            return { x: item.x, y: item.y };
+          }),
+          pointRadius: 5,
+          pointBackgroundColor: "yellow",
           borderColor: "yellow",
         },
         {
-          label: "Ngưỡng cảnh báo",
-          data: templateSensorsList.map(() => 41),
+          label: "Ngưỡng cảnh báo(50°C)",
+          data: [
+            { x: 0, y: 50 },
+            { x: 1, y: 50 },
+            { x: 2, y: 50 },
+            { x: 3, y: 50 },
+            { x: 4, y: 50 },
+            { x: 5, y: 50 },
+            { x: 6, y: 50 },
+          ],
           borderColor: "red",
+          pointRadius: 0,
+          borderDash: [5, 5],
         },
       ],
     },
     options: {
       scales: {
         x: {
+          type: "linear",
+          ticks: {
+            callback: function (value) {
+              return labelMap[value] ?? "";
+            },
+          },
           title: {
             display: true,
             text: "Thời gian (giờ)",
@@ -866,28 +790,57 @@ const chartWaterSensorHandler = function () {
   new Chart(adminChartWaterSensor, {
     type: "line",
     data: {
-      labels: waterSensorList.map((item) => item.time),
       datasets: [
         {
           label: "Cảm biến 1",
-          data: waterSensorList.map((item) => item.water_sensor.distance),
+          data: waterSensorList.map((item) => {
+            return { x: item.x, y: item.y };
+          }),
+          pointRadius: 5,
+          pointBackgroundColor: "rgb(75, 192, 192)",
           borderColor: "rgb(75, 192, 192)",
         },
         {
-          label: "Cảm biến 2",
-          data: waterSensorList.map(() => 2500),
+          label: "Ngưỡng cảnh báo 1",
+          data: [
+            { x: 0, y: 2200 },
+            { x: 1, y: 2200 },
+            { x: 2, y: 2200 },
+            { x: 3, y: 2200 },
+            { x: 4, y: 2200 },
+            { x: 5, y: 2200 },
+            { x: 6, y: 2200 },
+          ],
           borderColor: "yellow",
+          pointRadius: 0,
+          borderDash: [5, 5],
         },
         {
-          label: "Ngưỡng cảnh báo",
-          data: waterSensorList.map(() => 2200),
+          label: "Ngưỡng cảnh báo 2",
+          data: [
+            { x: 0, y: 2500 },
+            { x: 1, y: 2500 },
+            { x: 2, y: 2500 },
+            { x: 3, y: 2500 },
+            { x: 4, y: 2500 },
+            { x: 5, y: 2500 },
+            { x: 6, y: 2500 },
+          ],
           borderColor: "red",
+          pointRadius: 0,
+          borderDash: [5, 5],
         },
       ],
     },
     options: {
       scales: {
         x: {
+          type: "linear",
+          ticks: {
+            callback: function (value) {
+              return labelMap[value] ?? "";
+            },
+          },
           title: {
             display: true,
             text: "Thời gian (giờ)",
