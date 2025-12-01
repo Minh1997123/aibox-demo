@@ -26,6 +26,12 @@ const SENSOR_THRESHOLDS = {
     low: { min: 50, max: 100 },
     medium: { min: 100, max: 200 },
     high: { min: 200, max: 1000 }
+  },
+  current: {
+    normal: { min: 0, max: 5 },
+    low: { min: 5, max: 10 },
+    medium: { min: 15, max: 25 },
+    high: { min: 25, max: 1000 }
   }
 };
 
