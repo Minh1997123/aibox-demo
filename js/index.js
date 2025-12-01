@@ -2401,7 +2401,12 @@ function initDashboardAdminCharts() {
   // SỬA: Thêm Biểu đồ Pie (Trạng thái Hệ thống)
   const systemStatusPieCtx = document.getElementById("systemStatusPieChart");
   if (systemStatusPieCtx) {
-    if (systemStatusPieCtx.chart) systemStatusPieCtx.chart.destroy();
+    // Destroy existing chart using Chart.js API
+    const existingChart = systemStatusPieCtx.chart || 
+      (typeof Chart !== 'undefined' && Chart.getChart ? Chart.getChart(systemStatusPieCtx) : null);
+    if (existingChart) {
+      existingChart.destroy();
+    }
     systemStatusPieCtx.chart = new Chart(systemStatusPieCtx, {
       type: "pie",
       data: systemStatusPieData,
@@ -2454,9 +2459,13 @@ function initReportPPECharts() {
 // SỬA: Gộp SLA vào Event
 function initReportEventSLACharts() {
   // SỬA: Thêm data cho scorecards
-  document.getElementById("slaPercent").textContent = "92.5%";
-  document.getElementById("slaAvgTime").textContent = "1.5 phút";
-  document.getElementById("slaMissed").textContent = "15";
+  const slaPercent = document.getElementById("slaPercent");
+  const slaAvgTime = document.getElementById("slaAvgTime");
+  const slaMissed = document.getElementById("slaMissed");
+  
+  if (slaPercent) slaPercent.textContent = "92.5%";
+  if (slaAvgTime) slaAvgTime.textContent = "1.5 phút";
+  if (slaMissed) slaMissed.textContent = "15";
 }
 
 function initReportSLACharts() {

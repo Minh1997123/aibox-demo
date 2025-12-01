@@ -290,47 +290,108 @@ const waterSensorList = [
   { x: 5, y: 1755 },
   { x: 6, y: 1905 },
 ];
-// muc canh bao muc nuoc
+// muc canh bao
 const waterLevelList = [
+  // === CẢM BIẾN NHIỆT ĐỘ (°C) ===
   {
-    device_type: "hầm nối cáp - cảm biến nhiệt độ",
-    value_from: 2000,
-    value_to: 1800,
+    device_type: "Cảm biến nhiệt độ",
+    value_from: 20,
+    value_to: 35,
     deltaT: 30,
     color_code: "#4CAF50",
-    alert_level: 1,
+    alert_level: "Bình thường",
   },
   {
-    device_type: "hầm nối cáp - cảm biến nhiệt độ",
-    value_from: 1799,
+    device_type: "Cảm biến nhiệt độ",
+    value_from: 15,
+    value_to: 20,
+    deltaT: 30,
+    color_code: "#FFC107",
+    alert_level: "Thấp",
+  },
+  {
+    device_type: "Cảm biến nhiệt độ",
+    value_from: 35,
+    value_to: 45,
+    deltaT: 20,
+    color_code: "#FF9800",
+    alert_level: "Cao",
+  },
+  {
+    device_type: "Cảm biến nhiệt độ",
+    value_from: 45,
+    value_to: 100,
+    deltaT: 15,
+    color_code: "#F44336",
+    alert_level: "Nguy hiểm",
+  },
+  
+  // === CẢM BIẾN DÒNG ĐIỆN (A) ===
+  {
+    device_type: "Cảm biến dòng điện",
+    value_from: 0,
+    value_to: 5,
+    deltaT: 30,
+    color_code: "#4CAF50",
+    alert_level: "Bình thường",
+  },
+  {
+    device_type: "Cảm biến dòng điện",
+    value_from: 5,
+    value_to: 10,
+    deltaT: 30,
+    color_code: "#FFC107",
+    alert_level: "Thấp",
+  },
+  {
+    device_type: "Cảm biến dòng điện",
+    value_from: 15,
+    value_to: 25,
+    deltaT: 20,
+    color_code: "#FF9800",
+    alert_level: "Cao",
+  },
+  {
+    device_type: "Cảm biến dòng điện",
+    value_from: 25,
+    value_to: 1000,
+    deltaT: 15,
+    color_code: "#F44336",
+    alert_level: "Nguy hiểm",
+  },
+  
+  // === CẢM BIẾN MỰC NƯỚC (mm) ===
+  {
+    device_type: "Cảm biến mực nước",
+    value_from: 1500,
+    value_to: 2000,
+    deltaT: 30,
+    color_code: "#4CAF50",
+    alert_level: "Bình thường",
+  },
+  {
+    device_type: "Cảm biến mực nước",
+    value_from: 1200,
     value_to: 1500,
     deltaT: 30,
     color_code: "#FFC107",
-    alert_level: 2,
+    alert_level: "Thấp",
   },
   {
-    device_type: "hầm nối cáp - cảm biến nhiệt độ",
-    value_from: 1499,
+    device_type: "Cảm biến mực nước",
+    value_from: 800,
     value_to: 1200,
     deltaT: 20,
     color_code: "#FF9800",
-    alert_level: 3,
+    alert_level: "Cao",
   },
   {
-    device_type: "hầm nối cáp - cảm biến nhiệt độ",
-    value_from: 1199,
+    device_type: "Cảm biến mực nước",
+    value_from: 0,
     value_to: 800,
     deltaT: 15,
     color_code: "#F44336",
-    alert_level: 4,
-  },
-  {
-    device_type: "hầm nối cáp - cảm biến nhiệt độ",
-    value_from: 799,
-    value_to: 0,
-    deltaT: 10,
-    color_code: "#B71C1C",
-    alert_level: 4,
+    alert_level: "Nguy hiểm",
   },
 ];
 
@@ -443,6 +504,28 @@ const htmlCableTunnelNotifi = `<div class="row card-group-height-2">
                     </div>
                 </div>`;
 const htmlCableTunnel = `<div class="cable-tunnel tab-content" id="cableTunnelTab">
+                            <!-- Map Display Section -->
+                            <div class="card">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                                    <h3 class="header" style="border: none; margin: 0;">Bản đồ trạm cảm biến</h3>
+                                    <div style="display: flex; gap: 8px; align-items: center;">
+                                        <span id="realtimeConnectionStatus" class="status-disconnected">Đang kết nối...</span>
+                                        <button id="refreshMapBtn" class="map-refresh-btn" onclick="window.MapDisplay.refreshMap()">
+                                            <i class="fa-solid fa-rotate"></i> Làm mới
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="sensorMap" style="height: 500px; width: 100%; border-radius: 8px; overflow: hidden;"></div>
+                            </div>
+                            
+                            <!-- Sensor Stations Grid -->
+                            <div class="card">
+                                <h3 class="header" style="margin-bottom: 16px;">Danh sách trạm cảm biến</h3>
+                                <div id="sensorStationsGrid" class="sensor-stations-grid">
+                                    <!-- Stations will be dynamically loaded here -->
+                                </div>
+                            </div>
+                            
                             <div class="card">
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
                                     <h3 class="header" style="border: none; margin: 0;">cảm biến dòng điện</h3>
@@ -734,13 +817,27 @@ contentBody.innerHTML =
   htmlDeviceList +
   htmlWaterLevelList;
 
+// Chart instances storage
+let chartInstances = {
+  currentSensors: null,
+  waterSensor: null,
+  tempSensors: null
+};
+
 // hien thi dong dien
 const chartCurrentSensorsHandler = function () {
   // bieu do 1
   const adminChartCurrentSensors = document.getElementById(
     "adminChartCurrentSensors"
   );
-  new Chart(adminChartCurrentSensors, {
+  if (!adminChartCurrentSensors) return;
+  
+  // Destroy existing chart
+  if (chartInstances.currentSensors) {
+    chartInstances.currentSensors.destroy();
+  }
+  
+  chartInstances.currentSensors = new Chart(adminChartCurrentSensors, {
     type: "line",
     data: {
       labels: currentSensoreList.map((item) => item.time),
@@ -824,7 +921,14 @@ const chartTempSensorsHandler = function () {
   const adminChartTempSensors = document.getElementById(
     "adminChartTempSensors"
   );
-  new Chart(adminChartTempSensors, {
+  if (!adminChartTempSensors) return;
+  
+  // Destroy existing chart
+  if (chartInstances.tempSensors) {
+    chartInstances.tempSensors.destroy();
+  }
+  
+  chartInstances.tempSensors = new Chart(adminChartTempSensors, {
     type: "line",
     data: {
       datasets: [
@@ -893,7 +997,14 @@ const chartWaterSensorHandler = function () {
   const adminChartWaterSensor = document.getElementById(
     "adminChartWaterSensor"
   );
-  new Chart(adminChartWaterSensor, {
+  if (!adminChartWaterSensor) return;
+  
+  // Destroy existing chart
+  if (chartInstances.waterSensor) {
+    chartInstances.waterSensor.destroy();
+  }
+  
+  chartInstances.waterSensor = new Chart(adminChartWaterSensor, {
     type: "line",
     data: {
       datasets: [
@@ -972,10 +1083,50 @@ cableTunnel.addEventListener("click", () => {
   // hien thi tab cable tunnel
   const historyDataTab = document.getElementById("cableTunnelTab");
   historyDataTab.style.display = "block";
+  
+  // Initialize map if not already initialized
+  setTimeout(() => {
+    // Load mock data first, then initialize map
+    if (!window.MapDisplay || !window.MapDisplay.mapInstance) {
+      // Load mock data first and wait for it to complete
+      const loadedCount = loadMockSensorData();
+      
+      // Then initialize map (which will load stations from the data we just loaded)
+      // Use longer delay to ensure data is fully processed
+      setTimeout(() => {
+        // Verify data is available before initializing map
+        const allData = window.SensorStationManager ? 
+          window.SensorStationManager.getAllStationData() : [];
+        console.log('Initializing map with', allData.length, 'stations available');
+        
+        if (window.MapDisplay) {
+          window.MapDisplay.initMap();
+          // Force refresh after initialization
+          setTimeout(() => {
+            if (window.MapDisplay && window.MapDisplay.mapInstance) {
+              window.MapDisplay.refreshMap();
+            }
+          }, 100);
+        }
+        // Load sensor stations display
+        loadSensorStationsDisplay();
+      }, 500); // Increased delay to ensure data is loaded
+    } else if (window.MapDisplay) {
+      // Map already exists, refresh data and map
+      loadMockSensorData();
+      setTimeout(() => {
+        window.MapDisplay.refreshMap();
+        loadSensorStationsDisplay();
+      }, 300);
+    }
+  }, 100);
+  
   // hien thi bieu do
-  chartCurrentSensorsHandler();
-  chartWaterSensorHandler();
-  chartTempSensorsHandler();
+  setTimeout(() => {
+    chartCurrentSensorsHandler();
+    chartWaterSensorHandler();
+    chartTempSensorsHandler();
+  }, 150);
 });
 // hieenr thi tab history data
 historyData.addEventListener("click", () => {
@@ -998,7 +1149,201 @@ deviceList.addEventListener("click", () => {
   });
   const deviceListTab = document.getElementById("deviceListTab");
   deviceListTab.style.display = "block";
+  
+  // Load tunnel-station mapping display
+  setTimeout(() => {
+    loadTunnelStationMapping();
+  }, 100);
 });
+
+// Load mock sensor data
+function loadMockSensorData() {
+  if (!window.SensorStationManager) {
+    console.warn('SensorStationManager not available');
+    return 0;
+  }
+  
+  const tunnels = window.getAllTunnels ? window.getAllTunnels() : [];
+  console.log('Loading mock data for', tunnels.length, 'tunnels');
+  
+  if (tunnels.length === 0) {
+    console.warn('No tunnels found!');
+    return 0;
+  }
+  
+  let loadedCount = 0;
+  
+  tunnels.forEach(tunnel => {
+    const stations = window.getStationsByTunnel ? 
+      window.getStationsByTunnel(tunnel.id) : [];
+    
+    // If getStationsByTunnel returns empty, try tunnel.stations directly
+    let stationsToProcess = stations;
+    if (stations.length === 0 && tunnel.stations && tunnel.stations.length > 0) {
+      stationsToProcess = tunnel.stations;
+    }
+    
+    if (stationsToProcess.length === 0) {
+      return; // Skip tunnels with no stations
+    }
+    
+    stationsToProcess.forEach((station, index) => {
+      // Create mock sensor data
+      const mockData = {
+        stationId: station.id,
+        stationName: station.name,
+        tunnelId: tunnel.id,
+        timestamp: new Date().toISOString(),
+        temperature: 25 + Math.random() * 10 + (index * 2), // 25-35°C with variation
+        humidity: 50 + Math.random() * 20 + (index * 3), // 50-70%
+        waterLevel: 1500 + Math.random() * 500 + (index * 100), // 1500-2000mm
+        gas: Math.random() * 30, // 0-30
+        currentCh1: 20 + Math.random() * 10,
+        currentCh2: 22 + Math.random() * 10,
+        currentCh3: 21 + Math.random() * 10,
+        status: 'active'
+      };
+      
+      const parsed = window.SensorStationManager.parseDeviceMessage(mockData);
+      if (parsed) {
+        window.SensorStationManager.updateStationData(parsed);
+        loadedCount++;
+      }
+    });
+  });
+  
+  console.log('Mock sensor data loaded:', loadedCount, 'stations');
+  
+  // Trigger bulk data loaded event for map refresh after all data is loaded
+  setTimeout(() => {
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('bulkStationDataLoaded'));
+      // Also refresh map if it exists
+      if (window.MapDisplay && window.MapDisplay.mapInstance) {
+        window.MapDisplay.refreshMap();
+      }
+    }
+  }, 100);
+  
+  // Update connection status
+  const statusEl = document.getElementById('realtimeConnectionStatus');
+  if (statusEl) {
+    statusEl.textContent = 'Đã kết nối';
+    statusEl.className = 'status-connected';
+  }
+  
+  return loadedCount;
+}
+
+// Load tunnel-station mapping display
+function loadTunnelStationMapping() {
+  const tableBody = document.querySelector("#deviceListTab tbody");
+  if (!tableBody) return;
+  
+  // Get all tunnels
+  const tunnels = window.getAllTunnels ? window.getAllTunnels() : [];
+  
+  let html = '';
+  
+  tunnels.forEach(tunnel => {
+    // Get stations for this tunnel
+    const stations = window.getStationsByTunnel ? 
+      window.getStationsByTunnel(tunnel.id) : [];
+    
+    // Get sensor data for stations
+    const stationData = window.SensorStationManager ? 
+      window.SensorStationManager.getStationsByTunnel(tunnel.id) : [];
+    
+    // Create data map
+    const dataMap = new Map();
+    stationData.forEach(sd => {
+      dataMap.set(sd.stationId, sd);
+    });
+    
+    // If no data, use mock data from historyDataList
+    if (stations.length === 0 && stationData.length === 0) {
+      // Use existing historyDataList entries for this tunnel
+      const tunnelData = historyDataList.filter(item => item.ten_ham === tunnel.id);
+      tunnelData.forEach(item => {
+        html += `
+          <tr>
+            <td>${item.tuyen}</td>
+            <td>${item.ten_ham}</td>
+            <td>${item.ten_lo}</td>
+            <td>${item.ten_thiet_bi}</td>
+            <td>${item.tinh_trang}</td>
+            <td>${item.gia_tri}</td>
+            <td>${item.thoi_gian}</td>
+          </tr>
+        `;
+      });
+    } else {
+      // Render stations for this tunnel
+      stations.forEach(station => {
+        const data = dataMap.get(station.id) || {};
+        const tuyen = "Đoạn tuyến cáp ngầm DZ 181, 172, 177, 178 E1.4 Hà Đông Từ vị trí cột 7M đến cột 15M";
+        
+        html += `
+          <tr>
+            <td>${tuyen}</td>
+            <td>${tunnel.id}</td>
+            <td>${station.name}</td>
+            <td>${data.ten_thiet_bi || 'Cảm biến nhiệt độ'}</td>
+            <td>${data.tinh_trang || (data.overallStatus === 'normal' ? 'Hoạt động' : 'Cảnh báo')}</td>
+            <td>${data.temperature ? data.temperature.toFixed(1) + '°C' : (data.gia_tri || 'N/A')}</td>
+            <td>${window.SensorStationManager ? 
+              window.SensorStationManager.formatTimestamp(data.timestamp) : 
+              (data.thoi_gian || 'N/A')}</td>
+          </tr>
+        `;
+      });
+    }
+  });
+  
+  // If still no data, use all historyDataList
+  if (!html) {
+    historyDataList.forEach(item => {
+      html += `
+        <tr>
+          <td>${item.tuyen}</td>
+          <td>${item.ten_ham}</td>
+          <td>${item.ten_lo}</td>
+          <td>${item.ten_thiet_bi}</td>
+          <td>${item.tinh_trang}</td>
+          <td>${item.gia_tri}</td>
+          <td>${item.thoi_gian}</td>
+        </tr>
+      `;
+    });
+  }
+  
+  // If still no data, use all historyDataList
+  if (!html) {
+    historyDataList.forEach(item => {
+      html += `
+        <tr>
+          <td>${item.tuyen}</td>
+          <td>${item.ten_ham}</td>
+          <td>${item.ten_lo}</td>
+          <td>${item.ten_thiet_bi}</td>
+          <td>${item.tinh_trang}</td>
+          <td>${item.gia_tri}</td>
+          <td>${item.thoi_gian}</td>
+        </tr>
+      `;
+    });
+  }
+  
+  tableBody.innerHTML = html || '<tr><td colspan="7">Chưa có dữ liệu</td></tr>';
+}
+
+// Duplicate function removed - using the one at line 1099
+
+// Make loadMockSensorData globally available
+if (typeof window !== 'undefined') {
+  window.loadMockSensorData = loadMockSensorData;
+}
+
 // hien thi thiet lap muc canh bao nuoc
 waterLevel.addEventListener("click", () => {
   document.querySelectorAll(".tab-content").forEach((content) => {
@@ -1010,3 +1355,146 @@ waterLevel.addEventListener("click", () => {
   const waterLevel = document.getElementById("water-Level");
   waterLevel.style.display = "block";
 });
+
+// Load sensor stations display
+function loadSensorStationsDisplay() {
+  const grid = document.getElementById("sensorStationsGrid");
+  if (!grid) return;
+  
+  // Get all tunnels
+  const tunnels = window.getAllTunnels ? window.getAllTunnels() : [];
+  
+  let html = '';
+  
+  tunnels.forEach(tunnel => {
+    // Get stations for this tunnel
+    const stations = window.SensorStationManager ? 
+      window.SensorStationManager.getStationsByTunnel(tunnel.id) : [];
+    
+    // If no station data, create placeholder from tunnel stations
+    if (stations.length === 0 && window.getStationsByTunnel) {
+      const tunnelStations = window.getStationsByTunnel(tunnel.id);
+      tunnelStations.forEach(ts => {
+        stations.push({
+          stationId: ts.id,
+          stationName: ts.name,
+          tunnelId: tunnel.id,
+          temperature: 0,
+          humidity: 0,
+          waterLevel: 0,
+          overallStatus: 'normal',
+          timestamp: new Date().toISOString()
+        });
+      });
+    }
+    
+    html += `
+      <div class="tunnel-station-group">
+        <h4 class="tunnel-group-header">
+          <i class="fa-solid fa-building"></i> ${tunnel.name}
+          <span class="station-count">(${stations.length} trạm)</span>
+        </h4>
+        <div class="stations-list">
+          ${stations.map(station => createStationCard(station)).join('')}
+        </div>
+      </div>
+    `;
+  });
+  
+  grid.innerHTML = html || '<p>Chưa có dữ liệu trạm cảm biến</p>';
+}
+
+// Create station card HTML
+function createStationCard(station) {
+  const status = station.overallStatus || 'normal';
+  const statusColor = getStationStatusColor(status);
+  const statusText = getStationStatusText(status);
+  const formatTime = window.SensorStationManager ? 
+    window.SensorStationManager.formatTimestamp(station.timestamp) : 
+    (station.timestamp || 'N/A');
+  
+  const tempClass = window.SensorStationManager && 
+    window.SensorStationManager.isAbnormal(station.temperature, 'temperature') ? 
+    'abnormal-value' : '';
+  const humClass = window.SensorStationManager && 
+    window.SensorStationManager.isAbnormal(station.humidity, 'humidity') ? 
+    'abnormal-value' : '';
+  const waterClass = window.SensorStationManager && 
+    window.SensorStationManager.isAbnormal(station.waterLevel, 'waterLevel') ? 
+    'abnormal-value' : '';
+  
+  return `
+    <div class="station-card" data-station-id="${station.stationId}">
+      <div class="station-card-header">
+        <h5>${station.stationName || station.stationId}</h5>
+        <span class="station-status-badge" style="background-color: ${statusColor};">
+          ${statusText}
+        </span>
+      </div>
+      <div class="station-card-body">
+        <div class="sensor-reading">
+          <span class="sensor-label">Nhiệt độ:</span>
+          <span class="sensor-value ${tempClass}">${station.temperature || 'N/A'}°C</span>
+        </div>
+        <div class="sensor-reading">
+          <span class="sensor-label">Độ ẩm:</span>
+          <span class="sensor-value ${humClass}">${station.humidity || 'N/A'}%</span>
+        </div>
+        <div class="sensor-reading">
+          <span class="sensor-label">Mực nước:</span>
+          <span class="sensor-value ${waterClass}">${station.waterLevel || 'N/A'}mm</span>
+        </div>
+        ${station.gas ? `
+        <div class="sensor-reading">
+          <span class="sensor-label">Khí:</span>
+          <span class="sensor-value">${station.gas}</span>
+        </div>
+        ` : ''}
+        <div class="sensor-reading">
+          <span class="sensor-label">Cập nhật:</span>
+          <span class="sensor-value">${formatTime}</span>
+        </div>
+      </div>
+      <div class="station-card-footer">
+        <button class="station-detail-btn" onclick="window.openStationDetail('${station.stationId}')">
+          <i class="fa-solid fa-info-circle"></i> Chi tiết
+        </button>
+        <button class="station-map-btn" onclick="window.MapDisplay.focusTunnel('${station.tunnelId}')">
+          <i class="fa-solid fa-map-marker-alt"></i> Xem bản đồ
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+// Get station status color
+function getStationStatusColor(status) {
+  const colors = {
+    normal: '#4CAF50',
+    low: '#FFC107',
+    medium: '#FF9800',
+    high: '#F44336'
+  };
+  return colors[status] || colors.normal;
+}
+
+// Get station status text
+function getStationStatusText(status) {
+  const texts = {
+    normal: 'Bình thường',
+    low: 'Cảnh báo thấp',
+    medium: 'Cảnh báo trung bình',
+    high: 'Cảnh báo cao'
+  };
+  return texts[status] || 'Không xác định';
+}
+
+// Listen for station data updates to refresh display
+if (typeof window !== 'undefined') {
+  window.addEventListener('stationDataUpdated', () => {
+    const tab = document.getElementById("cableTunnelTab");
+    if (tab && tab.style.display === 'block') {
+      loadSensorStationsDisplay();
+    }
+  });
+}

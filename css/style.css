@@ -191,6 +191,7 @@ body {
   flex-shrink: 0;
   height: 100vh;
   overflow-y: auto;
+  overflow-x: hidden;
   position: fixed;
   left: 0;
   top: 0;
@@ -198,6 +199,7 @@ body {
   backdrop-filter: blur(6px);
   z-index: 1500;
   font-size: var(--font-small);
+  word-wrap: break-word;
 }
 
 .logo {
@@ -292,6 +294,9 @@ body {
   display: block;
   color: #4b6572;
   font-size: var(--font-normal) !important;
+  word-wrap: break-word;
+  white-space: normal;
+  line-height: 1.4;
 }
 
 /* === Main content area === */
@@ -2912,4 +2917,287 @@ h2.header {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
+}
+
+/* ================= MAP DISPLAY STYLES ================= */
+#sensorMap {
+  position: relative;
+  z-index: 1;
+}
+
+.map-refresh-btn {
+  padding: 6px 12px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.map-refresh-btn:hover {
+  background: var(--accent-2);
+  transform: translateY(-1px);
+}
+
+.status-connected {
+  color: #4CAF50;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.status-disconnected {
+  color: #FF9800;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* Leaflet marker styles */
+.tunnel-marker {
+  background: transparent;
+  border: none;
+}
+
+.tunnel-marker-icon {
+  background: rgba(33, 150, 243, 0.9);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+}
+
+.station-marker {
+  background: transparent;
+  border: none;
+}
+
+.station-marker-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  border: 2px solid white;
+}
+
+.map-popup {
+  min-width: 200px;
+}
+
+.map-popup h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.map-popup p {
+  margin: 4px 0;
+  font-size: 12px;
+  color: #666;
+}
+
+.map-popup-btn {
+  margin-top: 8px;
+  padding: 6px 12px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  width: 100%;
+  transition: all 0.2s;
+}
+
+.map-popup-btn:hover {
+  background: var(--accent-2);
+}
+
+/* ================= SENSOR STATIONS GRID ================= */
+.sensor-stations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.tunnel-station-group {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid rgba(18, 30, 45, 0.06);
+}
+
+.tunnel-group-header {
+  margin: 0 0 12px 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+}
+
+.tunnel-group-header i {
+  color: var(--accent);
+}
+
+.station-count {
+  font-size: 13px;
+  font-weight: 400;
+  color: #666;
+  margin-left: auto;
+}
+
+.stations-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.station-card {
+  background: white;
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(18, 30, 45, 0.06);
+  transition: all 0.2s;
+}
+
+.station-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.station-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.station-card-header h5 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.station-status-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+}
+
+.station-card-body {
+  margin-bottom: 12px;
+}
+
+.sensor-reading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 13px;
+}
+
+.sensor-label {
+  color: #666;
+  font-weight: 500;
+}
+
+.sensor-value {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.sensor-value.abnormal-value {
+  color: #F44336;
+  font-weight: 700;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.station-card-footer {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+}
+
+.station-detail-btn,
+.station-map-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.station-detail-btn {
+  background: var(--blue);
+  color: white;
+}
+
+.station-detail-btn:hover {
+  background: #1976d2;
+  transform: translateY(-1px);
+}
+
+.station-map-btn {
+  background: var(--accent);
+  color: white;
+}
+
+.station-map-btn:hover {
+  background: var(--accent-2);
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sensor-stations-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stations-list {
+    grid-template-columns: 1fr;
+  }
+  
+  #sensorMap {
+    height: 400px;
+  }
 }
