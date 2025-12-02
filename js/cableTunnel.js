@@ -1392,7 +1392,7 @@ function createStationCard(station) {
         </div>
           <div class="sensor-reading">
           <span class="sensor-label"><i class="bi bi-lightning-charge-fill"style="font-size: 28px; color: #fed330;"></i></span>
-          <span class="sensor-value ${waterClass}">30 A</span>
+          <span class="sensor-value ${waterClass}">380 V / 30 A</span>
         </div>
         <div class="sensor-reading">
           <span class="sensor-label">Cập nhật:</span>

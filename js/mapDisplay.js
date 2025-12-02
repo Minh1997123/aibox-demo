@@ -225,9 +225,13 @@ function createStationPopup(station) {
       <p><strong>Trạng thái:</strong> 
         <span style="color: ${statusColor};">${statusText}</span>
       </p>
-      <p><strong>Nhiệt độ:</strong> ${station.temperature || "N/A"}°C</p>
-      <p><strong>Độ ẩm:</strong> ${station.humidity || "N/A"}%</p>
-      <p><strong>Mực nước:</strong> ${station.waterLevel || "N/A"}mm</p>
+      <p><strong>Nhiệt độ:</strong> ${
+        Number(station.temperature).toFixed(2) || "N/A"
+      }°C</p>
+      <p><strong>Dòng điện:</strong> ${"380 V / 30 A" || "N/A"}</p>
+      <p><strong>Mực nước:</strong> ${
+        Number(station.waterLevel).toFixed(2) || "N/A"
+      }mm</p>
       <p><strong>Cập nhật:</strong> ${formatTime}</p>
       <button onclick="openStationDetail('${
         station.stationId

@@ -2900,12 +2900,13 @@ h2.header {
 .notification {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 20px;
   /* width: 40%; */
 }
 .notification-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  border-radius: 13px;
 }
 .notification-section h2 {
   grid-column: 1 / span 2;

@@ -95,7 +95,7 @@ let notificationHtml = "";
 moduleName.forEach((module, index) => {
   notificationHtml =
     notificationHtml +
-    `<div class="notification-section" style="background-color:${moduleColor[index]}">
+    `<div class="notification-section" style="background-color:#C8EDF7">
     <h2>${module}</h2>
   ${htmlElements}
   </div>`;
