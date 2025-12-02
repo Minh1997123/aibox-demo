@@ -437,7 +437,19 @@ const htmlCableTunnel = `<div class="cable-tunnel tab-content" id="cableTunnelTa
                               </div>
                             <!-- Sensor Stations Grid -->
                             <div class="card">
-                                <h3 class="header" style="margin-bottom: 16px;">Danh sách trạm cảm biến</h3>
+                              <div>
+                              <h3 class="header" style="margin-bottom: 16px;">Danh sách trạm cảm biến</h3>
+                              <div class="row card" style="align-items: center; padding: 15px;">
+                                <label style="font-weight: bold;">Lọc theo tổ đội:</label>
+                                <select style="margin-right: 20px;">
+                                <option>Tổ 12</option>
+                                </select>
+                                <div class="sensor-reading" style="width: fit-content;">
+                                  <span class="sensor-label" style="margin-right: 10px;">Thời gian cập nhật gần nhất:</span>
+                                  <span class="sensor-value">18:22:56 03/12/2025</span>
+                                </div>
+                              </div>
+                              </div>
                                 <div id="sensorStationsGrid" class="sensor-stations-grid">
                                     <!-- Stations will be dynamically loaded here -->
                                 </div>
@@ -1335,7 +1347,9 @@ function loadSensorStationsDisplay() {
           <span class="station-count">(${stations.length} trạm)</span>
         </h4>
         <div class="stations-list">
-          ${stations.map((station) => createStationCard(station)).join("")}
+          ${stations
+            .map((station, index) => createStationCard(station, index))
+            .join("")}
         </div>
       </div>
     `;
@@ -1345,7 +1359,7 @@ function loadSensorStationsDisplay() {
 }
 
 // Create station card HTML
-function createStationCard(station) {
+function createStationCard(station, index) {
   const status = station.overallStatus || "normal";
   const statusColor = getStationStatusColor(status);
   const statusText = getStationStatusText(status);
@@ -1380,23 +1394,49 @@ function createStationCard(station) {
       <div class="station-card-body">
         <div class="sensor-reading">
           <span class="sensor-label"><i class="bi bi-thermometer-high" style="font-size: 28px; color: #ff4d4f;"></i></span>
+          <div style="display:flex;">
           <span class="sensor-value ${tempClass}">${
     station.temperature.toFixed(2) || "N/A"
   }°C</span>
+         <div class="station-info">
+            <i class="bi bi-arrow-${index % 2 ? "up" : "down"}" style="color: ${
+    index % 2 ? "red" : "green"
+  };"></i>
+            <span style="margin-left: -5px;">${(Math.random() * 100).toFixed(
+              2
+            )} %</span>
+          </div>
+        </div>
         </div>
         <div class="sensor-reading">
           <span class="sensor-label"><i class="bi bi-droplet-fill" style="font-size: 28px; color: #2980b9;"></i></span>
+          <div style="display:flex;">
           <span class="sensor-value ${waterClass}">${
     station.waterLevel.toFixed(2) || "N/A"
   } mm</span>
+          <div class="station-info">
+          <i class="bi bi-arrow-${index % 2 ? "up" : "down"}" style="color: ${
+    index % 2 ? "red" : "green"
+  };"></i>
+          <span style="margin-left: -5px;">${(Math.random() * 100).toFixed(
+            2
+          )} %</span>
+          </div>
+          </div>
         </div>
           <div class="sensor-reading">
           <span class="sensor-label"><i class="bi bi-lightning-charge-fill"style="font-size: 28px; color: #fed330;"></i></span>
+          <div style="display:flex;">
           <span class="sensor-value ${waterClass}">380 V / 30 A</span>
-        </div>
-        <div class="sensor-reading">
-          <span class="sensor-label">Cập nhật:</span>
-          <span class="sensor-value">${formatTime}</span>
+          <div class="station-info">
+          <i class="bi bi-arrow-${index % 2 ? "up" : "down"}" style="color: ${
+    index % 2 ? "red" : "green"
+  };"></i>
+          <span style="margin-left: -5px;">${(Math.random() * 100).toFixed(
+            2
+          )} %</span>
+          </div>
+          </div>
         </div>
       </div>
       <div class="station-card-footer">

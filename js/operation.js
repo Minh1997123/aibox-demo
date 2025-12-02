@@ -2,7 +2,7 @@ const notification = document.getElementById("notification");
 const notificationOperationData = [
   {
     number: 8,
-    text: "Nghiêm trọng",
+    text: "Tổng sự Kiện",
     icon: "fa-solid fa-triangle-exclamation",
     iconColor: "#ff4d4f",
     bgColor: "#ff4d4f",
@@ -44,6 +44,14 @@ const moduleColor = [
   "#BEE58D",
   "#A0EDE8",
   "#F6C5C8",
+];
+const moduleIcon = [
+  `<i class="bi bi-shield-fill"></i>`,
+  `<i class="fa-solid fa-fire"></i>`,
+  `<i class="fa-solid fa-droplet"></i>`,
+  `<i class="fa-solid fa-truck"></i>`,
+  `<i class="fas fa-id-card"></i></i>`,
+  `<i class="fa-solid fa-helmet-safety"></i>`,
 ];
 let htmlElements = "";
 notificationOperationData.forEach((item, index) => {
@@ -96,8 +104,11 @@ moduleName.forEach((module, index) => {
   notificationHtml =
     notificationHtml +
     `<div class="notification-section" style="background-color:#C8EDF7">
+    <header>
+    ${moduleIcon[index]}
     <h2>${module}</h2>
-  ${htmlElements}
-  </div>`;
+    </header>
+    ${htmlElements}
+    </div>`;
 });
 notification.innerHTML = notificationHtml;

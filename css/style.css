@@ -2912,12 +2912,17 @@ h2.header {
   grid-template-columns: 1fr 1fr;
   border-radius: 13px;
 }
-.notification-section h2 {
+.notification-section header {
   grid-column: 1 / span 2;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .notification-section * {
   background-color: transparent;
+}
+.notification-section h2 {
+  margin-left: 10px;
 }
 .notification-header .card {
   height: 100%;
@@ -3109,6 +3114,7 @@ h2.header {
   margin-bottom: 12px;
   padding-bottom: 8px;
   border-bottom: 1px solid #eee;
+  flex-wrap: wrap;
 }
 
 .station-card-header h5 {
@@ -3129,6 +3135,7 @@ h2.header {
 
 .station-card-body {
   margin-bottom: 12px;
+  flex: 1;
 }
 
 .sensor-reading {
@@ -3137,6 +3144,8 @@ h2.header {
   align-items: center;
   padding: 6px 0;
   font-size: 13px;
+  width: 100%;
+  margin-left: auto;
 }
 
 .sensor-label {
@@ -3147,6 +3156,7 @@ h2.header {
 .sensor-value {
   color: var(--text);
   font-weight: 600;
+  font-size: 1rem;
 }
 
 .sensor-value.abnormal-value {
@@ -3224,4 +3234,10 @@ h2.header {
 }
 #tableBody button {
   display: inline-flex !important;
+}
+.station-info {
+  position: relative;
+  top: -10px;
+  width: 5rem;
+  margin-left: 5px;
 }

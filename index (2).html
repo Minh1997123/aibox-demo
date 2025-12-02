@@ -19,7 +19,6 @@
 </head>
 
 <body>
-
     <div class="sidebar" id="sidebarMenu">
         <div class="logo">AI CLOUD</div>
 
@@ -51,12 +50,12 @@
         </div> -->
         <a href="#" class="nav-item" data-tab="dashboard-operation"><span class="icon icon-building"></span>Tổng
             quan</a>
-        <a href="#" class="nav-item" data-tab="dashboard-SysAdmin" id="SysAdmin"><span
-                class="icon icon-building"></span>Quản trị hệ thống</a>
-        <a href="#" class="nav-item" data-tab="report-branch"><span class="icon icon-building"></span>Thống kê chi
+        <a href="#" class="nav-item" data-tab="dashboard-SysAdmin" id="SysAdmin"><i
+                class="bi bi-gear-fill"></i>Quản trị hệ thống</a>
+        <a href="#" class="nav-item" data-tab="report-branch"><span class="bi bi-bar-chart-fill"></span>Thống kê chi
             nhánh</a>
         <a href="#" class="nav-item" data-tab="notifications"><span class="icon icon-bell"></span>Thông báo</a>
-        <a href="#" class="nav-item" data-tab="report-security"><span class="icon icon-shield"></span> Hàng rào ảo</a>
+        <a href="#" class="nav-item" data-tab="report-security"><i class="bi bi-shield-fill"></i> Hàng rào ảo</a>
         <a href="#" class="nav-item" data-tab="report-lpr"><i class="fas fa-id-card"></i></span>Biển số xe</a>
         <a href="#" class="nav-item" data-tab="oil-spill-page"><i class="fa-solid fa-droplet"></i>Tràn dầu kho</a>
         <a href="#" class="nav-item" data-tab="oil-spill-monitor"><i class="fa-solid fa-truck"></i>Tràn dầu xe tra
@@ -71,7 +70,7 @@
             camera</a>
         <a href="#" class="nav-item" data-tab="report-event"><span class="icon icon-clock"></span>Xử lý sự kiện vận
             hành</a>
-        <div class="report-section-header"  onclick="toggleReportSection(this)">
+        <div class="report-section-header" onclick="toggleReportSection(this)">
             <i class="fas fa-chart-line"></i>
             <span>Quản lý hầm cáp quang</span>
             <span class="arrow-icon">▼</span>
@@ -346,7 +345,7 @@
                         </div>
                     </div>
                 </div>
-               
+
                 <div class="col-4">
                     <div class="card">
                         <h3 class="header">Tỷ lệ hệ thống (Không hoạt động & cảnh báo)</h3>
@@ -356,7 +355,7 @@
                     </div>
                 </div>
             </div>
-            <div id="dashboard-operation" class="tab-content active" >
+            <div id="dashboard-operation" class="tab-content active">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <h1 class="header">Tổng quan</h1>
                     <span onclick="showDataWindow()"
@@ -366,7 +365,7 @@
                         <i class="fa-solid fa-download"></i> <span>Xuất báo cáo</span>
                     </span>
                 </div>
-                 <div class="row card" style="align-items: center; padding: 15px;">
+                <div class="row card" style="align-items: center; padding: 15px;">
                     <button>Ngày</button><button>Tuần</button><button>Tháng</button><button>Năm</button>
                     <label style="font-weight: bold;">Khoảng thời gian:</label>
                     <input type="date"> đến <input type="date">
@@ -421,7 +420,7 @@
                     </div>
                     <input type="text" placeholder="Tìm kiếm mã sự kiện, camera..." class="search-box">
                 </div> -->
-                  <div class="row card-group-height-1">
+                <div class="row card-group-height-1">
                     <div class="col-4">
                         <div class="card card-full-height">
                             <h3 class="header">Trạng thái AIBox</h3>
@@ -473,7 +472,7 @@
 
                     </div>
                 </div>
-               
+
                 <div class="row card-group-height-1">
                     <div class="col-4">
                         <div class="card card-full-height" style="padding: 20px;">
@@ -701,7 +700,7 @@
                     </div>
                     <!-- ket thuc -->
                 </div>
-              
+
                 <!-- <div class="row card-group-height-1">
                         <div class="col-6">
                             <div class="card card-full-height">
@@ -1433,7 +1432,6 @@
 
             <div id="notifications" class="tab-content">
                 <h2 class="header">Hộp thư thông báo</h2>
-
                 <div class="row card dashboard-filters">
                     <div>
                         <label>Chi nhánh:</label>
@@ -2203,7 +2201,7 @@
                         <div class="card card-full-height" style="padding: 20px;">
                             <h3 class="header" style="margin-bottom: 16px;">Storage sắp đầy (&lt;10%) </h3>
 
-                                    <div style="
+                            <div style="
                                         display: flex;
                                         align-items: center;
                                         gap: 55px; /* TĂNG KHOẢNG CÁCH TẠI ĐÂY */
@@ -2212,8 +2210,8 @@
                                         border-radius: 16px;
                                     ">
 
-                                        <!-- ICON -->
-                                        <div style="
+                                <!-- ICON -->
+                                <div style="
                                             width: 60px;
                                             height: 60px;
                                             background: #fffce5;
@@ -2223,22 +2221,22 @@
                                             align-items: center;
                                             flex-shrink: 0;
                                         ">
-                                            <i class="fa-solid fa-clock" style="font-size: 28px; color: #ffbb4d;"></i>
-                                        </div>
+                                    <i class="fa-solid fa-clock" style="font-size: 28px; color: #ffbb4d;"></i>
+                                </div>
 
-                                        <!-- TEXT -->
-                                        <div>
-                                            <div id="unprocessedEvents"
-                                                style="font-size: 32px; font-weight: 700; margin-bottom: 6px;">
-                                                2
-                                            </div>
-
-                                            <p style="color: #666; margin: 0; font-size: 15px;">
-                                                <!-- Từ khi xảy ra sự cố -->
-                                            </p>
-                                        </div>
-
+                                <!-- TEXT -->
+                                <div>
+                                    <div id="unprocessedEvents"
+                                        style="font-size: 32px; font-weight: 700; margin-bottom: 6px;">
+                                        2
                                     </div>
+
+                                    <p style="color: #666; margin: 0; font-size: 15px;">
+                                        <!-- Từ khi xảy ra sự cố -->
+                                    </p>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
 
@@ -3414,75 +3412,74 @@
     <script src="js/cableTunnel.js"></script>
     <script src="js/operation.js"></script>
     <script src="js/SysAdmin.js"></script>
-    
+
     <!-- Initialize Realtime and Map -->
     <script>
-      // Wrapper for showToast to match realtimeNotifications.js expectations
-      window.showToast = function(title, message, type) {
-        const iconMap = {
-          error: '<i class="fa-solid fa-circle-exclamation"></i>',
-          warning: '<i class="fa-solid fa-triangle-exclamation"></i>',
-          info: '<i class="fa-solid fa-circle-info"></i>',
-          success: '<i class="fa-solid fa-circle-check"></i>'
+        // Wrapper for showToast to match realtimeNotifications.js expectations
+        window.showToast = function (title, message, type) {
+            const iconMap = {
+                error: '<i class="fa-solid fa-circle-exclamation"></i>',
+                warning: '<i class="fa-solid fa-triangle-exclamation"></i>',
+                info: '<i class="fa-solid fa-circle-info"></i>',
+                success: '<i class="fa-solid fa-circle-check"></i>'
+            };
+
+            const typeMap = {
+                error: 'error',
+                warning: 'warning',
+                info: 'info',
+                success: 'success',
+                high: 'error',
+                medium: 'warning',
+                low: 'info',
+                normal: 'success'
+            };
+            const toastType = typeMap[type] || 'info';
+            const icon = iconMap[toastType] || iconMap.info;
+
+            // Use existing showToast function from index.js
+            if (typeof showToast === 'function') {
+                showToast(toastType, icon, title, message);
+            }
         };
-        
-        const typeMap = {
-          error: 'error',
-          warning: 'warning',
-          info: 'info',
-          success: 'success',
-          high: 'error',
-          medium: 'warning',
-          low: 'info',
-          normal: 'success'
-        };
-        
-        const toastType = typeMap[type] || 'info';
-        const icon = iconMap[toastType] || iconMap.info;
-        
-        // Use existing showToast function from index.js
-        if (typeof showToast === 'function') {
-          showToast(toastType, icon, title, message);
-        }
-      };
-      
-      // Initialize realtime notifications when page loads
-      document.addEventListener('DOMContentLoaded', function() {
-        // Initialize realtime connection (WebSocket by default)
-        // Update the URL with your actual WebSocket endpoint
-        // window.realtimeNotificationManager.init('websocket', 'ws://your-server:port/ws/alerts');
-        
-        // For demo purposes, we'll use a mock connection
-        // Uncomment and configure when you have a real endpoint:
-        // window.realtimeNotificationManager.init('websocket', 'ws://localhost:8080/ws/alerts');
-        
-        // Listen for realtime alerts
-        window.addEventListener('realtimeAlert', function(event) {
-          const alert = event.detail;
-          console.log('Realtime alert received:', alert);
-          
-          // Show toast notification
-          const severity = alert.severity || alert.alertLevel || 'info';
-          const title = alert.title || `Cảnh báo từ ${alert.stationName || alert.stationId}`;
-          const message = alert.message || alert.description || 'Có cảnh báo mới từ trạm cảm biến';
-          window.showToast(title, message, severity);
+
+        // Initialize realtime notifications when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize realtime connection (WebSocket by default)
+            // Update the URL with your actual WebSocket endpoint
+            // window.realtimeNotificationManager.init('websocket', 'ws://your-server:port/ws/alerts');
+
+            // For demo purposes, we'll use a mock connection
+            // Uncomment and configure when you have a real endpoint:
+            // window.realtimeNotificationManager.init('websocket', 'ws://localhost:8080/ws/alerts');
+
+            // Listen for realtime alerts
+            window.addEventListener('realtimeAlert', function (event) {
+                const alert = event.detail;
+                console.log('Realtime alert received:', alert);
+
+                // Show toast notification
+                const severity = alert.severity || alert.alertLevel || 'info';
+                const title = alert.title || `Cảnh báo từ ${alert.stationName || alert.stationId}`;
+                const message = alert.message || alert.description || 'Có cảnh báo mới từ trạm cảm biến';
+                window.showToast(title, message, severity);
+            });
+
+            // Listen for station detail requests
+            window.addEventListener('stationDetailRequest', function (event) {
+                const { stationId } = event.detail;
+                console.log('Station detail requested:', stationId);
+                // You can implement a modal or panel to show station details here
+                // For now, we'll just log it
+            });
+
+            // Load mock data after a short delay to ensure all modules are loaded
+            setTimeout(() => {
+                if (window.loadMockSensorData && typeof window.loadMockSensorData === 'function') {
+                    window.loadMockSensorData();
+                }
+            }, 500);
         });
-        
-        // Listen for station detail requests
-        window.addEventListener('stationDetailRequest', function(event) {
-          const { stationId } = event.detail;
-          console.log('Station detail requested:', stationId);
-          // You can implement a modal or panel to show station details here
-          // For now, we'll just log it
-        });
-        
-        // Load mock data after a short delay to ensure all modules are loaded
-        setTimeout(() => {
-          if (window.loadMockSensorData && typeof window.loadMockSensorData === 'function') {
-            window.loadMockSensorData();
-          }
-        }, 500);
-      });
     </script>
 </body>
 
