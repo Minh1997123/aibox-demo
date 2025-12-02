@@ -2893,15 +2893,26 @@ h2.header {
 }
 .notification-header {
   display: grid;
-  grid-template-columns: 2fr 3fr;
+  grid-template-columns: 2fr 1fr;
   gap: 10px;
   margin-bottom: 20px;
 }
 .notification {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   /* width: 40%; */
+}
+.notification-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.notification-section h2 {
+  grid-column: 1 / span 2;
+  text-align: center;
+}
+.notification-section * {
+  background-color: transparent;
 }
 .notification-header .card {
   height: 100%;
@@ -2945,13 +2956,13 @@ h2.header {
 }
 
 .status-connected {
-  color: #4CAF50;
+  color: #4caf50;
   font-weight: 600;
   font-size: 13px;
 }
 
 .status-disconnected {
-  color: #FF9800;
+  color: #ff9800;
   font-weight: 600;
   font-size: 13px;
 }
@@ -3134,14 +3145,19 @@ h2.header {
 }
 
 .sensor-value.abnormal-value {
-  color: #F44336;
+  color: #f44336;
   font-weight: 700;
   animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 .station-card-footer {
@@ -3192,11 +3208,11 @@ h2.header {
   .sensor-stations-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .stations-list {
     grid-template-columns: 1fr;
   }
-  
+
   #sensorMap {
     height: 400px;
   }

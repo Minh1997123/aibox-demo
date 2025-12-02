@@ -4,41 +4,52 @@ const notificationOperationData = [
     number: 8,
     text: "Sự kiện nghiêm trọng",
     icon: "fa-solid fa-triangle-exclamation",
-    iconColor: "#ffffff",
+    iconColor: "#ff4d4f",
     bgColor: "#ff4d4f",
-    cardBgColor: "linear-gradient(135deg, #ff6b6b 0%, #ff4d4f 100%)",
   },
   {
     number: 15,
     text: "Chưa xử lý",
     icon: "fa-solid fa-clock",
-    iconColor: "#ffffff",
+    iconColor: "#ff6b6b",
     bgColor: "#ff6b6b",
-    cardBgColor: "linear-gradient(135deg, #ff9a8b 0%, #ff6b6b 100%)",
   },
   {
     number: 23,
     text: "Đang xử lý",
     icon: "fa-solid fa-hourglass-half",
-    iconColor: "#ffffff",
+    iconColor: "#ffa500",
     bgColor: "#ffa500",
-    cardBgColor: "linear-gradient(135deg, #ffc371 0%, #ff9500 100%)",
   },
   {
     number: 54,
     text: "Đã xử lý ",
     icon: "fa-solid fa-circle-check",
-    iconColor: "#ffffff",
+    iconColor: "#4caf50",
     bgColor: "#4caf50",
-    cardBgColor: "linear-gradient(135deg, #66bb6a 0%, #43a047 100%)",
   },
 ];
+const moduleName = [
+  "Sự kiện hàng rào ảo",
+  "Sự kiện báo cháy",
+  "Sự kiện tràn dầu kho",
+  "Sự kiện tràn dầu xe tra nạp",
+  "sự kiện biển số xe",
+  "Sự kiện an toàn lao động",
+];
+const moduleColor = [
+  "#59DEE0",
+  "#F7E29C",
+  "#C8EDF7",
+  "#BEE58D",
+  "#A0EDE8",
+  "#F6C5C8",
+];
 let htmlElements = "";
-notificationOperationData.forEach((item) => {
-  const htmlElementsCurrent = `<div class="col-4">
-                                      <div class="card card-full-height" style="padding: 20px; background: ${item.cardBgColor}; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+notificationOperationData.forEach((item, index) => {
+  const htmlElementsCurrent = `<div class="col-4" style="background-color: transparent;" >
+                                      <div class="card card-full-height" style="padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);border-radius: 0;>
                                           <h3 class="header" style="margin-bottom: 16px; color: #ffffff;">${item.text}</h3>
-          
                                           <div 
                                               style="
                                                   display: flex;
@@ -67,12 +78,10 @@ notificationOperationData.forEach((item) => {
                                                       style="font-size: 28px; color: ${item.iconColor};"
                                                   ></i>
                                               </div>
-          
-                                          
                                               <div>
                                                   <div 
                                                       id="unprocessedEvents" 
-                                                      style="font-size: 32px; font-weight: 700; margin-bottom: 6px; color: #ffffff;"
+                                                      style="font-size: 2rem; font-weight: 700; margin-bottom: 6px; "
                                                   >
                                                       ${item.number}
                                                   </div>
@@ -82,4 +91,13 @@ notificationOperationData.forEach((item) => {
                                   </div> `;
   htmlElements = htmlElements + htmlElementsCurrent;
 });
-notification.innerHTML = htmlElements;
+let notificationHtml = "";
+moduleName.forEach((module, index) => {
+  notificationHtml =
+    notificationHtml +
+    `<div class="notification-section" style="background-color:${moduleColor[index]}">
+    <h2>${module}</h2>
+  ${htmlElements}
+  </div>`;
+});
+notification.innerHTML = notificationHtml;

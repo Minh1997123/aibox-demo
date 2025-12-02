@@ -356,7 +356,7 @@
                     </div>
                 </div>
             </div>
-            <div id="dashboard-operation" class="tab-content active">
+            <div id="dashboard-operation" class="tab-content active" >
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <h1 class="header">Tổng quan</h1>
                     <span onclick="showDataWindow()"
@@ -416,6 +416,34 @@
                     </div>
                     <input type="text" placeholder="Tìm kiếm mã sự kiện, camera..." class="search-box">
                 </div> -->
+                  <div class="row card-group-height-1">
+                    <div class="col-4">
+                        <div class="card card-full-height">
+                            <h3 class="header">Trạng thái AIBox</h3>
+                            <div class="chart-container-flex">
+                                <div class="donut-chart-wrapper">
+                                    <div class="donut-center-text" id="aiBoxTotalText">...</div>
+                                    <canvas id="aiBoxStatusChart"></canvas>
+                                </div>
+                                <div id="aiBoxLegend"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="card card-full-height">
+                            <h3 class="header">Trạng thái camera</h3>
+                            <div class="chart-container-flex">
+                                <div class="donut-chart-wrapper">
+                                    <div class="donut-center-text" id="cameraTotalText">...</div>
+                                    <canvas id="cameraStatusChart"></canvas>
+                                </div>
+                                <div id="cameraLegend"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ket thuc -->
+                </div>
                 <div id="unreadCount">
                     <div class="row card-group-height-1">
                         <div class="col-6">
@@ -668,34 +696,7 @@
                     </div>
                     <!-- ket thuc -->
                 </div>
-                <div class="row card-group-height-1">
-                    <div class="col-4">
-                        <div class="card card-full-height">
-                            <h3 class="header">Trạng thái AIBox</h3>
-                            <div class="chart-container-flex">
-                                <div class="donut-chart-wrapper">
-                                    <div class="donut-center-text" id="aiBoxTotalText">...</div>
-                                    <canvas id="aiBoxStatusChart"></canvas>
-                                </div>
-                                <div id="aiBoxLegend"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-4">
-                        <div class="card card-full-height">
-                            <h3 class="header">Trạng thái camera</h3>
-                            <div class="chart-container-flex">
-                                <div class="donut-chart-wrapper">
-                                    <div class="donut-center-text" id="cameraTotalText">...</div>
-                                    <canvas id="cameraStatusChart"></canvas>
-                                </div>
-                                <div id="cameraLegend"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ket thuc -->
-                </div>
+              
                 <!-- <div class="row card-group-height-1">
                         <div class="col-6">
                             <div class="card card-full-height">

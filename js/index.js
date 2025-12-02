@@ -2402,12 +2402,15 @@ function initDashboardAdminCharts() {
   const systemStatusPieCtx = document.getElementById("systemStatusPieChart");
   if (systemStatusPieCtx) {
     // Destroy existing chart using Chart.js API
-    const existingChart = systemStatusPieCtx.chart || 
-      (typeof Chart !== 'undefined' && Chart.getChart ? Chart.getChart(systemStatusPieCtx) : null);
+    const existingChart =
+      systemStatusPieCtx.chart ||
+      (typeof Chart !== "undefined" && Chart.getChart
+        ? Chart.getChart(systemStatusPieCtx)
+        : null);
     if (existingChart) {
       existingChart.destroy();
     }
-    systemStatusPieCtx.chart = new Chart(systemStatusPieCtx, {
+    new Chart(systemStatusPieCtx, {
       type: "pie",
       data: systemStatusPieData,
       options: {
@@ -2462,7 +2465,7 @@ function initReportEventSLACharts() {
   const slaPercent = document.getElementById("slaPercent");
   const slaAvgTime = document.getElementById("slaAvgTime");
   const slaMissed = document.getElementById("slaMissed");
-  
+
   if (slaPercent) slaPercent.textContent = "92.5%";
   if (slaAvgTime) slaAvgTime.textContent = "1.5 phút";
   if (slaMissed) slaMissed.textContent = "15";
