@@ -4029,7 +4029,6 @@ window.setupOilSpillMonitor = function () {
 
   // Initialize charts
   initializeCharts();
-
   // Initial render
   renderTable(sampleData);
 

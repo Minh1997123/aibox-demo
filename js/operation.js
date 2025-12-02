@@ -2,7 +2,7 @@ const notification = document.getElementById("notification");
 const notificationOperationData = [
   {
     number: 8,
-    text: "Sự kiện nghiêm trọng",
+    text: "Nghiêm trọng",
     icon: "fa-solid fa-triangle-exclamation",
     iconColor: "#ff4d4f",
     bgColor: "#ff4d4f",
@@ -30,12 +30,12 @@ const notificationOperationData = [
   },
 ];
 const moduleName = [
-  "Sự kiện hàng rào ảo",
-  "Sự kiện báo cháy",
-  "Sự kiện tràn dầu kho",
-  "Sự kiện tràn dầu xe tra nạp",
-  "sự kiện biển số xe",
-  "Sự kiện an toàn lao động",
+  "Hàng rào ảo",
+  "Báo cháy",
+  "Tràn dầu kho",
+  "Tràn dầu xe tra nạp",
+  "Biển số xe",
+  "An toàn lao động",
 ];
 const moduleColor = [
   "#59DEE0",

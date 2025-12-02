@@ -768,7 +768,8 @@ th {
 
 /* Date inputs inside card rows */
 .card.row input[type="date"],
-.row.card input[type="date"] {
+.row.card input[type="date"],
+.card.row button {
   height: 40px;
   padding: 8px 12px;
   font-size: 14px;
@@ -782,7 +783,10 @@ th {
   box-sizing: border-box;
   min-width: 150px;
 }
-
+.card.row button:hover {
+  cursor: pointer;
+  border: 1px solid black;
+}
 .card.row input[type="date"]:focus,
 .row.card input[type="date"]:focus {
   border-color: var(--accent);
@@ -3217,4 +3221,7 @@ h2.header {
   #sensorMap {
     height: 400px;
   }
+}
+#tableBody button {
+  display: inline-flex !important;
 }
